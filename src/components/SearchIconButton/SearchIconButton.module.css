@@ -1,4 +1,4 @@
-button {
+.searchIconButton {
     width: 51px; /* Ajuster la taille du bouton */
     height: 52px;
     background-image: url('../../assets/Glass.png');
@@ -7,7 +7,7 @@ button {
     cursor: pointer;
   }
   
-  button:hover {
+  .searchIconButton:hover {
     background-image: url('../../assets/GlassVar.png');
   }
   

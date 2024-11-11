@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./SearchBar.css";
+import styles from "./SearchBar.module.css";
 import SearchIconButton from "../SearchIconButton/SearchIconButton";
 
 const SearchBar = () => {
@@ -16,26 +16,26 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="search-bar">
-      <div className="search-input-container">
+    <div className={styles.searchBar}>
+      <div className={styles.searchInputContainer}>
         <input
           type="text"
-          className="search-input"
+          className={styles.searchInput}
           placeholder="Rechercher une recette, un ingrédient..."
           aria-label="Search"
           value={inputValue} // Lier l'état à la valeur de l'input
           onChange={handleChange} // Utiliser la fonction handleChange pour chaque changement de l'input
         />
-        <div className="clear-icon-container">
+        <div className={styles.clearIconContainer}>
           {/* Afficher la croix pour effacer le champ si du texte est entré */}
           {inputValue && (
-            <span className="clear-icon" onClick={handleClear}>
+            <span className={styles.clearIcon} onClick={handleClear}>
               &#x2715; {/* Croix */}
             </span>
           )}
         </div>
 
-        <div className="search-icon-button-container">
+        <div className={styles.searchIconButtonContainer}>
           <SearchIconButton />
         </div>
       </div>

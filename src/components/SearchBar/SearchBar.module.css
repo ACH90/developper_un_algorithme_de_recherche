@@ -1,4 +1,4 @@
-.search-bar{
+.searchBar{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,14 +6,14 @@
 
 }
 
-.search-input-container {
+.searchInputContainer {
     display: flex;
     background-color: white;
     border: 1px solid white;
     border-radius: 11px;
 }
 
-.search-input{
+.searchInput{
     width: 954px;
     height: 72px;
     padding: 10px;
@@ -24,19 +24,19 @@
     font-size: 16px;
 }
 
-.search-input:focus {
+.searchInput:focus {
     outline: none; /* Retirer la bordure de focus */
     border: none;  /* Facultatif : si vous avez une bordure visible, vous pouvez aussi la retirer */
   }
 
-.search-icon-button-container{
+.searchIconButtonContainer{
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px;
 }
 
-.clear-icon-container {
+.clearIconContainer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,7 +44,7 @@
     width: 40px;
   }
 
-.clear-icon {
+.clearIcon {
     font-size: 18px;
     color: #888;
     cursor: pointer;
