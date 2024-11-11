@@ -1,3 +1,8 @@
+:root {
+    --font-primary: "Anton";
+    --font-secondary: "Manrope";
+}
+
 * {
     font-family: "anton";
     margin: 0;

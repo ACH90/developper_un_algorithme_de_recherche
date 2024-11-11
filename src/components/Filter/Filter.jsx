@@ -31,6 +31,10 @@ const Filter = () => {
     setFoodSearch(event.target.value);
   };
 
+  const clearFoodSearch = () => {
+    setFoodSearch(""); // Efface le texte de l'entrée de recherche
+  };
+
   const filteredFoodOptions = ["Fruits", "Légumes", "Viandes"].filter((food) =>
     food.toLowerCase().includes(foodSearch.toLowerCase())
   );
@@ -46,13 +50,23 @@ const Filter = () => {
         </button>
         {isFoodOpen && (
           <div className={styles.filterMenu}>
-            <input
-              type="text"
-              className={styles.searchInput}
-              placeholder="Rechercher un aliment..."
-              value={foodSearch}
-              onChange={handleFoodSearchChange}
-            />
+            <div className={styles.searchInputContainer}>
+              <input
+                type="text"
+                className={styles.searchInput}
+                aria-label="Search"
+                // placeholder="Rechercher un aliment..."
+                value={foodSearch}
+                onChange={handleFoodSearchChange}
+              />
+              {foodSearch && (
+                <span className={styles.clearIcon} onClick={clearFoodSearch}>
+                  &#x2715; {/* Icône "X" */}
+                </span>
+              )}
+              <img src="../../../src/assets/Ellipse4.png" alt="" />
+            </div>
+
             {filteredFoodOptions.map((food) => (
               <button
                 key={food}
