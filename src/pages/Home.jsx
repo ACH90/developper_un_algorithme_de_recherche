@@ -1,4 +1,4 @@
-import "/src/pages/Home.css";
+import styles from "/src/pages/Home.module.css";
 import Logo from "../components/Logo/logo";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Filter from "../components/Filter/Filter";
@@ -15,7 +15,7 @@ function Accueil() {
         <SearchBar />
       </header>
       <main>
-        <section className="filter-container">
+        <section className={styles.filterContainer}>
           <Filter />
         </section>
         {/* <section className="search-bar"></section> */}

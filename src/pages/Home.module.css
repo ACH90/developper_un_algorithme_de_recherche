@@ -1,0 +1,23 @@
+body {
+    background-color: #EDEDED;
+}
+
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../assets/BackgroundHeader.png);
+    background-size: cover;
+    background-position: center; /* Centrage de l'image */
+    color: white; /* Couleur du texte en blanc */
+    position: relative;
+}
+
+h1 {
+    color: #FFD15B;
+    padding: 90px 275px 30px 275px;
+    font-family: Anton;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 66.24px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
