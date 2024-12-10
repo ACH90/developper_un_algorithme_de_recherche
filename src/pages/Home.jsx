@@ -3,7 +3,7 @@ import Logo from "../components/Logo/logo";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Filter from "../components/Filter/Filter";
 
-function Accueil() {
+function home() {
   return (
     <>
       <header>
@@ -26,4 +26,4 @@ function Accueil() {
   );
 }
 
-export default Accueil;
+export default home;
