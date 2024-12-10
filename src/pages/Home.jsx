@@ -2,6 +2,7 @@ import styles from "/src/pages/Home.module.css";
 import Logo from "../components/Logo/logo";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Filter from "../components/Filter/Filter";
+import Card from "../components/Card/Card";
 
 function home() {
   return (
@@ -19,7 +20,9 @@ function home() {
           <Filter />
         </section>
         {/* <section className="search-bar"></section> */}
-        <section className="cards"></section>
+        <section className="cards">
+          <Card />
+        </section>
       </main>
       <footer></footer>
     </>

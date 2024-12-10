@@ -4,7 +4,7 @@
 }
 
 * {
-    font-family: "anton";
+    /* font-family: "anton"; */
     margin: 0;
     padding: 0;
     box-sizing: border-box; /* Ceci aide à rendre la mise en page plus prévisible */
