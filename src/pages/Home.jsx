@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import styles from "/src/pages/Home.module.css";
 import Logo from "../components/Logo/logo";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Filter from "../components/Filter/Filter";
 import Card from "../components/Card/Card";
-
+import dataLoader from "../dataLoader/dataLoader";
 function home() {
   return (
     <>
