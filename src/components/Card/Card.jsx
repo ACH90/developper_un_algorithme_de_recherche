@@ -1,7 +1,7 @@
 import style from "./Card.module.css";
 import { data } from "../../dataLoader/dataLoader";
 
-console.log(data);
+// console.log(data);
 
 // const recipe = data;
 // const imageElement = document.createElement("img");
@@ -13,19 +13,28 @@ const Card = () => {
       {data.map((recipe) => (
         <div key={recipe.id} className={style.card}>
           <div className={style["card-item"]}>
-            <div className={style["card-time"]}>
-              <p>{recipe.time}min</p>
+            {/* Card-FirstPart */}
+            <div>
+              <div className={style["card-time"]}>
+                <p>{recipe.time}min</p>
+              </div>
+              <div className={style["card-image"]}>
+                <img
+                  src={`/src/assets/Img_recipes/${recipe.image}`}
+                  alt={recipe.name}
+                />
+              </div>
             </div>
-            <div className={style["card-image"]}>
-              <img
-                src={`/src/assets/Img_recipes/${recipe.image}`}
-                alt={recipe.name}
-              />
-            </div>
-
+            {/* Card-SecondPart */}
             <div className={style["card-description"]}>
               <h3>{recipe.name}</h3>
               <p>{recipe.description}</p>
+              <div>
+                <h4>Ingrédients</h4>
+                <div>
+                  <p>{recipe.ingredients.ingredient}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
