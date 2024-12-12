@@ -12,15 +12,21 @@ const Card = () => {
     <>
       {data.map((recipe) => (
         <div key={recipe.id} className={style.card}>
-          <div className={style["card-image"]}>
-            <img
-              src={`/src/assets/Img_recipes/${recipe.image}`}
-              alt={recipe.name}
-            />
-          </div>
-          <div className={style["card-description"]}>
-            <h3>{recipe.name}</h3>
-            <p>{recipe.description}</p>
+          <div className={style["card-item"]}>
+            <div className={style["card-time"]}>
+              <p>{recipe.time}min</p>
+            </div>
+            <div className={style["card-image"]}>
+              <img
+                src={`/src/assets/Img_recipes/${recipe.image}`}
+                alt={recipe.name}
+              />
+            </div>
+
+            <div className={style["card-description"]}>
+              <h3>{recipe.name}</h3>
+              <p>{recipe.description}</p>
+            </div>
           </div>
         </div>
       ))}
