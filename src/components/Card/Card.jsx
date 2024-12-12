@@ -1,5 +1,6 @@
 import style from "./Card.module.css";
 import { data } from "../../dataLoader/dataLoader";
+// import ingredients from "../../data/recipes";
 
 // console.log(data);
 
@@ -32,7 +33,15 @@ const Card = () => {
               <div>
                 <h4>Ingrédients</h4>
                 <div>
-                  <p>{recipe.ingredients.ingredient}</p>
+                  <ul>
+                    {recipe.ingredients.map((item, index) => (
+                      <li key={index}>
+                        {item.ingredient}
+                        {item.quantity ? `: ${item.quantity}` : ""}
+                        {item.unit ? ` ${item.unit}` : ""}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
