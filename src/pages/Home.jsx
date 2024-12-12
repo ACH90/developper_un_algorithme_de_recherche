@@ -21,7 +21,7 @@ function home() {
           <Filter />
         </section>
         {/* <section className="search-bar"></section> */}
-        <section className="cards">
+        <section className={styles.cards}>
           <Card />
         </section>
       </main>

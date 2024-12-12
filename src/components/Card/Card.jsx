@@ -9,9 +9,9 @@ console.log(data);
 // imageElement.src = recipe.image;
 const Card = () => {
   return (
-    <div className={style.card}>
+    <>
       {data.map((recipe) => (
-        <div key={recipe.id} className={style["card-item"]}>
+        <div key={recipe.id} className={style.card}>
           <div className={style["card-image"]}>
             <img
               src={`/src/assets/Img_recipes/${recipe.image}`}
@@ -24,7 +24,7 @@ const Card = () => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
