@@ -14,7 +14,7 @@ const Card = () => {
         <div key={recipe.id} className={style["card-item"]}>
           <div className={style["card-image"]}>
             <img
-              src={`../../assets/Img_recipes/${recipe.image}`}
+              src={`/src/assets/Img_recipes/${recipe.image}`}
               alt={recipe.name}
             />
           </div>
