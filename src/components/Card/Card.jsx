@@ -40,9 +40,14 @@ const Card = () => {
                   <ul className={style["card-ingredients"]}>
                     {recipe.ingredients.map((item, index) => (
                       <li key={index}>
-                        {item.ingredient}
-                        {item.quantity ? `: ${item.quantity}` : ""}
-                        {item.unit ? ` ${item.unit}` : ""}
+                        <div className={style["card-ingredients-item"]}>
+                          <h5>{item.ingredient}</h5>
+                          <p>
+                            {item.quantity ? `${item.quantity}` : ""}
+                            {/* Verifie si il y a une quantité.Si oui,affiche la quantité si non "" rien */}
+                            {item.unit ? ` ${item.unit}` : ""}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ul>
