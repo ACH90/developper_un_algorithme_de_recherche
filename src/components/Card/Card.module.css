@@ -12,7 +12,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
     font-family: "manrope";
     margin: 10px;
-    width: 300px;
+    background-color: white;
   }
 
   .card-item {
@@ -55,8 +55,7 @@ border-radius: 14px ;
   }
   
   .card-description {
-    padding: 16px;
-    background-color: #fff;
+    padding: 32px 25px 61px 25px;
   }
   
   .card-description h3 {
@@ -113,7 +112,7 @@ border-radius: 14px ;
   }
 
   .card-pt2 {
-    display: grid;
+    padding-top: 32px;
   }
 
   .card-ingredients-item h5 {
@@ -132,5 +131,8 @@ border-radius: 14px ;
   ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+  li {
+    padding-bottom: 20px;
   }
 
