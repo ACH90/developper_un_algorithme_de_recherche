@@ -26,14 +26,18 @@ const Card = () => {
                 />
               </div>
             </div>
-            {/* Card-SecondPart */}
+            {/* Card-SecondPart - Ingredients*/}
             <div className={style["card-description"]}>
               <h3>{recipe.name}</h3>
-              <p>{recipe.description}</p>
-              <div>
-                <h4>Ingrédients</h4>
+              <div className={style["card-pt1"]}>
+                <h4>RECETTE</h4>
+                <p>{recipe.description}</p>
+              </div>
+
+              <div className={style["card-pt2"]}>
+                <h4>INGREDIENTS</h4>
                 <div>
-                  <ul>
+                  <ul className={style["card-ingredients"]}>
                     {recipe.ingredients.map((item, index) => (
                       <li key={index}>
                         {item.ingredient}
