@@ -22,10 +22,18 @@ h1 {
     text-decoration-skip-ink: none;
 }
 
+.filterContainer {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 21px;
+}
+
 .cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 20px;
-    padding: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 50px;
 }
