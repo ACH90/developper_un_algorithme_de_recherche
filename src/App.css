@@ -8,5 +8,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box; /* Ceci aide à rendre la mise en page plus prévisible */
-
 }
+
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+  }
+
