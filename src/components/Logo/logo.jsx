@@ -3,7 +3,7 @@ import styles from "./logo.module.css";
 const Logo = () => {
   return (
     <div>
-      <img src="./src/assets/Logo.png" alt="Logo" className={styles.logo} />
+      <img src="./public/assets/Logo.png" alt="Logo" className={styles.logo} />
     </div>
   );
 };
