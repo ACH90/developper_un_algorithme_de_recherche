@@ -21,7 +21,7 @@ const Card = () => {
               </div>
               <div className={style["card-image"]}>
                 <img
-                  src={`./public/assets/Img_recipes/${recipe.image}`}
+                  src={`assets/Img_recipes/${recipe.image}`}
                   alt={recipe.name}
                 />
               </div>
