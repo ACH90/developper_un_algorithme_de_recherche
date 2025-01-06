@@ -5,7 +5,9 @@ import SearchBar from "../components/SearchBar/SearchBar";
 import Filter from "../components/Filter/Filter";
 import Card from "../components/Card/Card";
 import dataLoader from "../dataLoader/dataLoader";
-function home() {
+import { useState } from "react";
+function Home() {
+  const [inputValue, setInputValue] = useState("");
   return (
     <>
       <header>
@@ -14,7 +16,7 @@ function home() {
           CHERCHEZ PARMIS PLUS DE 15000 RECETTES DU QUOTIDIEN, SIMPLES ET
           DELICIEUSES
         </h1>
-        <SearchBar />
+        <SearchBar inputValue={inputValue} setInputValue={setInputValue} />
       </header>
       <main>
         <section className={styles.filterContainer}>
@@ -22,7 +24,7 @@ function home() {
         </section>
         {/* <section className="search-bar"></section> */}
         <section className={styles.cards}>
-          <Card />
+          <Card inputValue={inputValue} />
         </section>
       </main>
       <footer></footer>
@@ -30,4 +32,4 @@ function home() {
   );
 }
 
-export default home;
+export default Home;
