@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./SearchBar.module.css";
 import SearchIconButton from "../SearchIconButton/SearchIconButton";
+import { data } from "../../dataLoader/dataLoader";
 
+const recipes = data;
 const SearchBar = () => {
-  const [inputValue, setInputValue] = useState(""); // Déclarer l'état
+  const [inputValue, setInputValue] = useState([]); // Déclarer l'état
+
+  useEffect(() => {
+    console.log("inputValue:", inputValue); // Afficher la valeur de l'input dans la console
+  }, [inputValue]);
 
   // Fonction de gestion du changement dans l'input
   const handleChange = (event) => {
@@ -20,6 +26,8 @@ const SearchBar = () => {
       <div className={styles.searchInputContainer}>
         <input
           type="text"
+          name="searchBar"
+          id="searchBar"
           className={styles.searchInput}
           placeholder="Rechercher une recette, un ingrédient..."
           aria-label="Search"
