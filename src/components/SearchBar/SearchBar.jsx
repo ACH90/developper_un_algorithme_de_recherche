@@ -6,23 +6,27 @@ import { data } from "../../dataLoader/dataLoader";
 
 const SearchBar = ({ inputValue, setInputValue }) => {
   const [datas, setDatas] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const recipes = data;
     console.log(recipes);
     console.log(datas);
     (recipes) => setDatas(recipes); // Mettre les données dans l'état
-    console.log(inputValue);
   }, []); // Le tableau de dependances vide signifie que le composant sera monté une seule fois
 
   // Fonction de gestion du changement dans l'input
   const handleChange = (event) => {
-    console.log(event.target.value);
-    let value = event.target.value;
-    setInputValue(value); // Met à jour l'état lorsque l'utilisateur tape
+    const value = event.target.value; // Récupère la valeur actuelle
+    setSearchInput(value); // Met à jour searchInput
+    // Utilise `value` au lieu de `searchInput` pour évaluer la condition
+    if (value.length > 2) {
+      setInputValue(value); // Met à jour inputValue si plus d'un caractère
+    } else {
+      setInputValue(""); // Réinitialise inputValue si moins de deux caractères
+    }
+    console.log("Current value: ", value);
   };
-
-  console.log(inputValue);
 
   // Fonction pour effacer le texte de l'input
   const handleClear = () => {
@@ -40,7 +44,7 @@ const SearchBar = ({ inputValue, setInputValue }) => {
             className={styles.searchInput}
             placeholder="Rechercher une recette, un ingrédient..."
             aria-label="Search"
-            value={inputValue} // Lier l'état à la valeur de l'input
+            value={searchInput} // Lier l'état à la valeur de l'input
             onChange={handleChange} // Utiliser la fonction handleChange pour chaque changement de l'input
           />
           <div className={styles.clearIconContainer}>
