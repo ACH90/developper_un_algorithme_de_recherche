@@ -1,5 +1,6 @@
 import style from "./Card.module.css";
 import { data } from "../../dataLoader/dataLoader";
+import { filterRecipesWithFor } from "./../../filterRecipesWithFor/filterRecipesWithFor";
 
 // eslint-disable-next-line react/prop-types
 const Card = ({ inputValue }) => {
@@ -7,15 +8,7 @@ const Card = ({ inputValue }) => {
   const dataCopy = data.slice();
 
   // Filtrage avec une boucle for
-  const filteredRecipes = [];
-  for (let i = 0; i < dataCopy.length; i++) {
-    if (
-      // eslint-disable-next-line react/prop-types
-      dataCopy[i].name.toLocaleLowerCase().includes(inputValue.toLowerCase())
-    ) {
-      filteredRecipes.push(dataCopy[i]);
-    }
-  }
+  const filteredRecipes = filterRecipesWithFor(dataCopy, inputValue);
 
   // Mapping avec une boucle for
   const recipeCards = [];
