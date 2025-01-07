@@ -31,6 +31,7 @@ const SearchBar = ({ inputValue, setInputValue }) => {
   // Fonction pour effacer le texte de l'input
   const handleClear = () => {
     setInputValue(""); // Efface le texte de l'input quand on clique sur la croix
+    setSearchInput("");
   };
 
   return (
