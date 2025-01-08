@@ -1,5 +1,5 @@
 // Fonction pour filtrer et mapper les recettes
-export const filterAndMapRecipes = (recipes, inputValue) => {
+const filterAndMapRecipes = (recipes, inputValue) => {
   return recipes
     .filter(
       (recipe) =>
@@ -20,3 +20,5 @@ export const filterAndMapRecipes = (recipes, inputValue) => {
       ingredients: recipe.ingredients,
     }));
 };
+
+export default filterAndMapRecipes;

@@ -4,7 +4,7 @@ import Logo from "../components/Logo/logo";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Filter from "../components/Filter/Filter";
 import Card from "../components/Card/Card";
-import dataLoader from "../dataLoader/dataLoader";
+// import dataLoader from "../../utils/dataLoader/dataLoader";
 import { useState } from "react";
 function Home() {
   const [inputValue, setInputValue] = useState("");

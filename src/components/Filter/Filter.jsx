@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./Filter.module.css";
 
 const Filter = () => {
-  const [selectedFood, setSelectedFood] = useState("Aliment");
+  const [selectedFood, setSelectedFood] = useState("Ingrédients");
   const [selectedDevice, setSelectedDevice] = useState("Appareil");
   const [selectedUtensil, setSelectedUtensil] = useState("Ustensile");
   const [isFoodOpen, setIsFoodOpen] = useState(false);

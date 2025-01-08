@@ -1,6 +1,6 @@
 import style from "./Card.module.css";
 import { data } from "../../dataLoader/dataLoader";
-import { filterAndMapRecipes } from "./../../filterAndMapRecipes/filterAndMapRecipes";
+import filterAndMapRecipes from "./../../filterAndMapRecipes/filterAndMapRecipes";
 
 // eslint-disable-next-line react/prop-types
 const Card = ({ inputValue }) => {
