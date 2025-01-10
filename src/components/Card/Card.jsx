@@ -6,6 +6,7 @@ import { filterAndMapRecipes } from "./../../filterAndMapRecipes/filterAndMapRec
 const Card = ({ inputValue }) => {
   // Utilisation de la fonction utilitaire
   const filteredRecipes = filterAndMapRecipes(data, inputValue);
+  console.log(filteredRecipes);
 
   return (
     <>
