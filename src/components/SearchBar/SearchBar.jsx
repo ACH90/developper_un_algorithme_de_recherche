@@ -1,38 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+
 import styles from "./SearchBar.module.css";
 import SearchIconButton from "../SearchIconButton/SearchIconButton";
-import { data } from "../../dataLoader/dataLoader";
+import useFilter from "../../useFilter/useFilter";
 
-const SearchBar = ({ inputValue, setInputValue }) => {
-  const [datas, setDatas] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
-
-  useEffect(() => {
-    const recipes = data;
-    console.log(recipes);
-    console.log(datas);
-    (recipes) => setDatas(recipes); // Mettre les données dans l'état
-  }, []); // Le tableau de dependances vide signifie que le composant sera monté une seule fois
-
-  // Fonction de gestion du changement dans l'input
-  const handleChange = (event) => {
-    const value = event.target.value; // Récupère la valeur actuelle
-    setSearchInput(value); // Met à jour searchInput
-    // Utilise `value` au lieu de `searchInput` pour évaluer la condition
-    if (value.length > 2) {
-      setInputValue(value); // Met à jour inputValue si plus d'un caractère
-    } else {
-      setInputValue(""); // Réinitialise inputValue si moins de deux caractères
-    }
-    console.log("Current value: ", value);
-  };
-
-  // Fonction pour effacer le texte de l'input
-  const handleClear = () => {
-    setInputValue(""); // Efface le texte de l'input quand on clique sur la croix
-    setSearchInput("");
-  };
+const SearchBar = () => {
+  // Utilisation de la fonction utilitaire
+  const { inputValue, searchInput, handleChange, handleClear } = useFilter();
+  console.log(inputValue);
 
   return (
     <>

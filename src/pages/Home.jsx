@@ -4,10 +4,11 @@ import Logo from "../components/Logo/logo";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Filter from "../components/Filter/Filter";
 import Card from "../components/Card/Card";
-import dataLoader from "../dataLoader/dataLoader";
-import { useState } from "react";
+// import dataLoader from "../dataLoader/dataLoader";
+import useFilter from "../useFilter/useFilter";
+// import { useState } from "react";
 function Home() {
-  const [inputValue, setInputValue] = useState("");
+  const { filteredRecipes, inputValue, setInputValue } = useFilter([]);
   return (
     <>
       <header>
@@ -24,7 +25,7 @@ function Home() {
         </section>
         {/* <section className="search-bar"></section> */}
         <section className={styles.cards}>
-          <Card inputValue={inputValue} />
+          <Card recipes={filteredRecipes} />
         </section>
       </main>
       <footer></footer>
