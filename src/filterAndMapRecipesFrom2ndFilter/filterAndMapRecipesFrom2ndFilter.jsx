@@ -4,11 +4,7 @@ export const filterAndMapRecipesFrom2ndFilter = (
   inputValueFiltered
 ) => {
   return recipes
-    .filter(
-      (recipe) =>
-        recipe.ustensils.includes(inputValueFiltered) ||
-        recipes.appliance.includes(inputValueFiltered)
-    )
+    .filter((recipe) => recipe.ingredients.includes(inputValueFiltered))
     .map((recipe) => ({
       id: recipe.id,
       name: recipe.name,

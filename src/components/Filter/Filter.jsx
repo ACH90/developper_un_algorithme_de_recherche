@@ -4,50 +4,47 @@ import { filterAndMapRecipes } from "../../filterAndMapRecipes/filterAndMapRecip
 import { data } from "../../dataLoader/dataLoader";
 
 // eslint-disable-next-line react/prop-types
-const Filter = ({ inputValue }) => {
-  const filteredRecipes = filterAndMapRecipes(data, inputValue);
+const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
+  // const [selectedFood] = useState("Ingredients");
+  const [isFoodOpen, setIsFoodOpen] = useState(false);
+  // Pour la recherche dans Aliments
+  // const [foodSearch, setFoodSearch] = useState("");
+
+  const filteredRecipes = filterAndMapRecipes(data, inputValue, foodSearch);
   console.log(
-    "Voici les recettes filtrées dans le composant Filter",
+    "Voici les recettes filtrées finales dans le composant Filter",
     filteredRecipes
   );
 
-  const [selectedFood, setSelectedFood] = useState("Ingredients");
-  const [selectedDevice, setSelectedDevice] = useState("Appareil");
-  const [selectedUtensil, setSelectedUtensil] = useState("Ustensile");
-  const [isFoodOpen, setIsFoodOpen] = useState(false);
-  const [isDeviceOpen, setIsDeviceOpen] = useState(false);
-  const [isUtensilOpen, setIsUtensilOpen] = useState(false);
-  const [foodSearch, setFoodSearch] = useState(""); // Pour la recherche dans Aliments
-
-  const toggleMenu = (menu) => {
-    if (menu === "food") setIsFoodOpen(!isFoodOpen);
-    if (menu === "device") setIsDeviceOpen(!isDeviceOpen);
-    if (menu === "utensil") setIsUtensilOpen(!isUtensilOpen);
+  const toggleMenu = (dropdown) => {
+    if (dropdown === "food") setIsFoodOpen(!isFoodOpen);
   };
 
-  const handleSelect = (event, menu, option) => {
-    const optionSelected = event.target.textContent;
+  const handleSelect = (event, dropdown) => {
+    // const optionSelected = event.target.textContent;
 
     // Mettre à jour l'état du filtre
-    if (option.includes("Aliment")) setSelectedFood(option);
-    if (option.includes("Appareil")) setSelectedDevice(option);
-    if (option.includes("Ustensile")) setSelectedUtensil(option);
+    setFoodSearch(event.target.value);
+    // if (option.includes("Appareil")) setSelectedDevice(option);
+    // if (option.includes("Ustensile")) setSelectedUtensil(option);
 
     // Fermer le menu après sélection
-    if (menu === "food") setIsFoodOpen(false);
-    if (menu === "device") setIsDeviceOpen(false);
-    if (menu === "utensil") setIsUtensilOpen(false);
+    if (dropdown === "food") setIsFoodOpen(false);
 
-    console.log("Voici l'option choisie", optionSelected); // Affiche l'option choisie
+    console.log("Voici l'option choisie", event.target.value); // Affiche l'option choisie
   };
-  const handleFoodSearchChange = (event) => {
+
+  console.log("Voici l'input de recherche foodSearch", foodSearch);
+
+  const handleChange = (event) => {
     const ingredientSearch = event.target.value; // Utiliser directement la valeur de l'input
     setFoodSearch(ingredientSearch); // Met à jour l'état
     console.log("Voici l'ingredient recherché", ingredientSearch); // Log la valeur immédiate
   };
 
-  const clearFoodSearch = () => {
-    setFoodSearch(""); // Efface le texte de l'entrée de recherche
+  //Effacer le texte de l'entrée de recherche
+  const clearSearch = () => {
+    setFoodSearch("");
   };
 
   // Extraire la liste des ingrediens
@@ -58,7 +55,10 @@ const Filter = ({ inputValue }) => {
   // Supprimer les doublons (facultatif)
   const uniqueIngredients = [...new Set(ingredientsList)];
 
-  console.log(uniqueIngredients);
+  console.log(
+    "Voici la liste des ingredients sans doublons",
+    uniqueIngredients
+  );
 
   return (
     <div className={styles.filter}>
@@ -67,7 +67,7 @@ const Filter = ({ inputValue }) => {
           className={styles.filterToggle}
           onClick={() => toggleMenu("food")}
         >
-          {selectedFood}
+          Ingredients
         </button>
         {isFoodOpen && (
           <div className={styles.filterMenu}>
@@ -78,10 +78,10 @@ const Filter = ({ inputValue }) => {
                 aria-label="Search"
                 // placeholder="Rechercher un aliment..."
                 value={foodSearch}
-                onChange={handleFoodSearchChange}
+                onChange={handleChange}
               />
               {foodSearch && (
-                <span className={styles.clearIcon} onClick={clearFoodSearch}>
+                <span className={styles.clearIcon} onClick={clearSearch}>
                   &#x2715; {/* Icône "X" */}
                 </span>
               )}
@@ -101,7 +101,7 @@ const Filter = ({ inputValue }) => {
         )}
       </div>
 
-      <div className={styles.filterDropdown}>
+      {/* <div className={styles.filterDropdown}>
         <button
           className={styles.filterToggle}
           onClick={() => toggleMenu("device")}
@@ -161,7 +161,7 @@ const Filter = ({ inputValue }) => {
             </button>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
