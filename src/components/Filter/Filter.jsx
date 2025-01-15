@@ -15,7 +15,7 @@ const Filter = ({ inputValue }) => {
     filteredRecipes.ingredients
   );
 
-  const [selectedFood, setSelectedFood] = useState("Aliment");
+  const [selectedFood, setSelectedFood] = useState("Ingredients");
   const [selectedDevice, setSelectedDevice] = useState("Appareil");
   const [selectedUtensil, setSelectedUtensil] = useState("Ustensile");
   const [isFoodOpen, setIsFoodOpen] = useState(false);
