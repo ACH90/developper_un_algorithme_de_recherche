@@ -10,10 +10,6 @@ const Filter = ({ inputValue }) => {
     "Voici les recettes filtrées dans le composant Filter",
     filteredRecipes
   );
-  console.log(
-    "Voici le tableaud d'ingrédients dans les recettes filtrées",
-    filteredRecipes.ingredients
-  );
 
   const [selectedFood, setSelectedFood] = useState("Ingredients");
   const [selectedDevice, setSelectedDevice] = useState("Appareil");
@@ -29,25 +25,32 @@ const Filter = ({ inputValue }) => {
     if (menu === "utensil") setIsUtensilOpen(!isUtensilOpen);
   };
 
-  const handleSelect = (menu, option) => {
-    if (menu === "food") setSelectedFood(option);
-    if (menu === "device") setSelectedDevice(option);
-    if (menu === "utensil") setSelectedUtensil(option);
+  const handleSelect = (event, menu, option) => {
+    const optionSelected = event.target.textContent;
+
+    // Mettre à jour l'état du filtre
+    if (option.includes("Aliment")) setSelectedFood(option);
+    if (option.includes("Appareil")) setSelectedDevice(option);
+    if (option.includes("Ustensile")) setSelectedUtensil(option);
 
     // Fermer le menu après sélection
     if (menu === "food") setIsFoodOpen(false);
     if (menu === "device") setIsDeviceOpen(false);
     if (menu === "utensil") setIsUtensilOpen(false);
-  };
 
+    console.log("Voici l'option choisie", optionSelected); // Affiche l'option choisie
+  };
   const handleFoodSearchChange = (event) => {
-    setFoodSearch(event.target.value);
+    const ingredientSearch = event.target.value; // Utiliser directement la valeur de l'input
+    setFoodSearch(ingredientSearch); // Met à jour l'état
+    console.log("Voici l'ingredient recherché", ingredientSearch); // Log la valeur immédiate
   };
 
   const clearFoodSearch = () => {
     setFoodSearch(""); // Efface le texte de l'entrée de recherche
   };
 
+  // Extraire la liste des ingrediens
   const ingredientsList = filteredRecipes.flatMap((recipe) =>
     recipe.ingredients.map((item) => item.ingredient)
   );

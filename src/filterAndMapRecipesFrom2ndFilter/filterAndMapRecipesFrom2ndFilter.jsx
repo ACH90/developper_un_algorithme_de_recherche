@@ -1,29 +1,22 @@
-import { filteredRecipes } from "./../components/Card/Card";
-
-export const filterAndMapRecipesFrom2ndFilter = () => {
-  console.log(
-    "Voici les recettes filtrées de Card transférées dans 2ndFilter",
-    filteredRecipes
-  );
-  //   return recipesMoreFiltered
-  //     .filter(
-  //       (recipe) =>
-  //         recipe.name.toLowerCase().includes(filteredRecipes.toLowerCase()) ||
-  //         recipe.description
-  //           .toLowerCase()
-  //           .includes(filteredRecipes.toLowerCase()) ||
-  //         recipe.ingredients.some((ingredientObj) =>
-  //           ingredientObj.ingredient
-  //             .toLowerCase()
-  //             .includes(filteredRecipes.toLowerCase())
-  //         )
-  //     )
-  //     .map((recipe) => ({
-  //       id: recipe.id,
-  //       name: recipe.name,
-  //       time: recipe.time,
-  //       image: recipe.image,
-  //       description: recipe.description,
-  //       ingredients: recipe.ingredients,
-  //     }));
+// Fonction pour filtrer et mapper les recettes
+export const filterAndMapRecipesFrom2ndFilter = (
+  recipes,
+  inputValueFiltered
+) => {
+  return recipes
+    .filter(
+      (recipe) =>
+        recipe.ustensils.includes(inputValueFiltered) ||
+        recipes.appliance.includes(inputValueFiltered)
+    )
+    .map((recipe) => ({
+      id: recipe.id,
+      name: recipe.name,
+      time: recipe.time,
+      image: recipe.image,
+      description: recipe.description,
+      ingredients: recipe.ingredients,
+      appliance: recipe.appliance,
+      ustensils: recipe.ustensils,
+    }));
 };
