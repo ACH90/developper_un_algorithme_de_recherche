@@ -20,7 +20,7 @@ function Home() {
       </header>
       <main>
         <section className={styles.filterContainer}>
-          <Filter />
+          <Filter inputValue={inputValue} setInputValue={setInputValue} />
         </section>
         {/* <section className="search-bar"></section> */}
         <section className={styles.cards}>

@@ -1,12 +1,15 @@
 import style from "./Card.module.css";
 import { data } from "../../dataLoader/dataLoader";
 import { filterAndMapRecipes } from "./../../filterAndMapRecipes/filterAndMapRecipes";
+// import { filterAndMapRecipesFrom2ndFilter } from "../../filterAndMapRecipesFrom2ndFilter/filterAndMapRecipesFrom2ndFilter";
 
 // eslint-disable-next-line react/prop-types
 const Card = ({ inputValue }) => {
   // Utilisation de la fonction utilitaire
   const filteredRecipes = filterAndMapRecipes(data, inputValue);
-  console.log(filteredRecipes);
+  console.log("Voici les recettes filtrées", filteredRecipes);
+
+  // filterAndMapRecipesFrom2ndFilter(filteredRecipes);
 
   return (
     <>

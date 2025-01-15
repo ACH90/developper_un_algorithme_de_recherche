@@ -1,7 +1,20 @@
 import { useState } from "react";
 import styles from "./Filter.module.css";
+import { filterAndMapRecipes } from "../../filterAndMapRecipes/filterAndMapRecipes";
+import { data } from "../../dataLoader/dataLoader";
 
-const Filter = () => {
+// eslint-disable-next-line react/prop-types
+const Filter = ({ inputValue }) => {
+  const filteredRecipes = filterAndMapRecipes(data, inputValue);
+  console.log(
+    "Voici les recettes filtrées dans le composant Filter",
+    filteredRecipes
+  );
+  console.log(
+    "Voici le tableaud d'ingrédients dans les recettes filtrées",
+    filteredRecipes.ingredients
+  );
+
   const [selectedFood, setSelectedFood] = useState("Aliment");
   const [selectedDevice, setSelectedDevice] = useState("Appareil");
   const [selectedUtensil, setSelectedUtensil] = useState("Ustensile");
@@ -35,9 +48,14 @@ const Filter = () => {
     setFoodSearch(""); // Efface le texte de l'entrée de recherche
   };
 
-  const filteredFoodOptions = ["Fruits", "Légumes", "Viandes"].filter((food) =>
-    food.toLowerCase().includes(foodSearch.toLowerCase())
+  const ingredientsList = filteredRecipes.flatMap((recipe) =>
+    recipe.ingredients.map((item) => item.ingredient)
   );
+
+  // Supprimer les doublons (facultatif)
+  const uniqueIngredients = [...new Set(ingredientsList)];
+
+  console.log(uniqueIngredients);
 
   return (
     <div className={styles.filter}>
@@ -64,10 +82,10 @@ const Filter = () => {
                   &#x2715; {/* Icône "X" */}
                 </span>
               )}
-              <img src="../../../src/assets/Ellipse4.png" alt="" />
+              <img src="./Ellipse4.png" alt="Search Logo" />
             </div>
 
-            {filteredFoodOptions.map((food) => (
+            {uniqueIngredients.map((food) => (
               <button
                 key={food}
                 className={styles.optionButton}
