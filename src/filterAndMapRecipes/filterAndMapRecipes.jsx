@@ -2,7 +2,9 @@
 export const filterAndMapRecipes = (
   recipes,
   inputValue,
-  selectedIngredient
+  selectedIngredient,
+  selectedAppliance,
+  selectedUstensils
 ) => {
   return recipes
     .filter((recipe) => {
@@ -25,7 +27,24 @@ export const filterAndMapRecipes = (
             .includes(selectedIngredient.toLowerCase())
         );
 
-      return matchesInputValue && matchesSelectedIngredient;
+      const matchesSelectedAppliance =
+        !selectedAppliance || // Pas de filtre si aucun appareil sélectionné
+        recipe.appliance
+          .toLowerCase()
+          .includes(selectedAppliance.toLowerCase());
+
+      const matchesSelectedUstensils =
+        !selectedUstensils || // Pas de filtre si aucun ustensile sélectionné
+        recipe.ustensils.some((ustensil) =>
+          ustensil.toLowerCase().includes(selectedUstensils.toLowerCase())
+        );
+
+      return (
+        matchesInputValue &&
+        matchesSelectedIngredient &&
+        matchesSelectedAppliance &&
+        matchesSelectedUstensils
+      );
     })
     .map((recipe) => ({
       id: recipe.id,

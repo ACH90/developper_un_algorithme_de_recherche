@@ -6,7 +6,7 @@ import { data } from "../../dataLoader/dataLoader";
 // eslint-disable-next-line react/prop-types
 const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
   // const [selectedFood] = useState("Ingredients");
-  const [isFoodOpen, setIsFoodOpen] = useState(false);
+  const [isIngredientFilterOpen, setisIngredientFilterOpen] = useState(false);
   // Pour la recherche dans Aliments
   // const [foodSearch, setFoodSearch] = useState("");
 
@@ -17,7 +17,7 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
   );
 
   const toggleMenu = (dropdown) => {
-    if (dropdown === "food") setIsFoodOpen(!isFoodOpen);
+    if (dropdown === "food") setisIngredientFilterOpen(!isIngredientFilterOpen);
   };
 
   const handleSelect = (event, dropdown) => {
@@ -29,7 +29,7 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
     // if (option.includes("Ustensile")) setSelectedUtensil(option);
 
     // Fermer le menu après sélection
-    if (dropdown === "food") setIsFoodOpen(false);
+    if (dropdown === "food") setisIngredientFilterOpen(false);
 
     console.log("Voici l'option choisie", event.target.value); // Affiche l'option choisie
   };
@@ -37,9 +37,13 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
   console.log("Voici l'input de recherche foodSearch", foodSearch);
 
   const handleChange = (event) => {
-    const ingredientSearch = event.target.value; // Utiliser directement la valeur de l'input
-    setFoodSearch(ingredientSearch); // Met à jour l'état
-    console.log("Voici l'ingredient recherché", ingredientSearch); // Log la valeur immédiate
+    const ingredientInputSearch = event.target.value; // Utiliser directement la valeur de l'input
+    setFoodSearch(ingredientInputSearch); // Met à jour l'état
+    console.log(
+      "Voici l'ingredient recherché dans le filtre",
+      ingredientInputSearch
+    ); // Log la valeur immédiate
+    console.log("Voici l'input de recherche foodSearch", foodSearch);
   };
 
   //Effacer le texte de l'entrée de recherche
@@ -69,7 +73,7 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
         >
           Ingredients
         </button>
-        {isFoodOpen && (
+        {isIngredientFilterOpen && (
           <div className={styles.filterMenu}>
             <div className={styles.searchInputContainer}>
               <input
@@ -88,15 +92,17 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
               <img src="./Ellipse4.png" alt="Search Logo" />
             </div>
 
-            {uniqueIngredients.map((food) => (
-              <button
-                key={food}
-                className={styles.optionButton}
-                onClick={() => handleSelect("food", food)}
-              >
-                {food}
-              </button>
-            ))}
+            {uniqueIngredients
+              .filter((item) => item.includes(foodSearch))
+              .map((food) => (
+                <button
+                  key={food}
+                  className={styles.optionButton}
+                  onClick={() => handleSelect("food", food)}
+                >
+                  {food}
+                </button>
+              ))}
           </div>
         )}
       </div>
