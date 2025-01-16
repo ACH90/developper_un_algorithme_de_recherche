@@ -21,17 +21,22 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
   };
 
   const handleSelect = (event, dropdown) => {
-    // const optionSelected = event.target.textContent;
+    // Vérifiez si event.target existe
+    if (!event.target) {
+      console.error("Événement sans cible valide :", event);
+      return;
+    }
+    const optionSelected = event.target.textContent;
 
     // Mettre à jour l'état du filtre
-    setFoodSearch(event.target.value);
+    setFoodSearch(optionSelected);
     // if (option.includes("Appareil")) setSelectedDevice(option);
     // if (option.includes("Ustensile")) setSelectedUtensil(option);
 
     // Fermer le menu après sélection
     if (dropdown === "food") setisIngredientFilterOpen(false);
 
-    console.log("Voici l'option choisie", event.target.value); // Affiche l'option choisie
+    console.log("Voici l'option choisie", optionSelected); // Affiche l'option choisie
   };
 
   console.log("Voici l'input de recherche foodSearch", foodSearch);
@@ -98,7 +103,7 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
                 <button
                   key={food}
                   className={styles.optionButton}
-                  onClick={() => handleSelect("food", food)}
+                  onClick={(event) => handleSelect(event, "food")}
                 >
                   {food}
                 </button>
