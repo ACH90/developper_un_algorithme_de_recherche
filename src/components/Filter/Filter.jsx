@@ -80,7 +80,7 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
                 type="text"
                 className={styles.searchInput}
                 aria-label="Search"
-                // placeholder="Rechercher un aliment..."
+                placeholder="Rechercher un aliment..."
                 value={foodSearch}
                 onChange={handleChange}
               />
@@ -89,7 +89,7 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
                   &#x2715; {/* Icône "X" */}
                 </span>
               )}
-              <img src="./Ellipse4.png" alt="Search Logo" />
+              <img src="./assets/Ellipse4.png" alt="Search Logo" />
             </div>
 
             {uniqueIngredients
