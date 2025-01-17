@@ -2,11 +2,11 @@ import { useState } from "react";
 import styles from "./Filter.module.css";
 import { filterAndMapRecipes } from "../../filterAndMapRecipes/filterAndMapRecipes";
 import { data } from "../../dataLoader/dataLoader";
-
 // eslint-disable-next-line react/prop-types
 const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
   // const [selectedFood] = useState("Ingredients");
   const [isIngredientFilterOpen, setisIngredientFilterOpen] = useState(false);
+  const [ingredientSearchFilter, setIngredientSearchFilter] = useState("");
   // Pour la recherche dans Aliments
   // const [foodSearch, setFoodSearch] = useState("");
 
@@ -36,8 +36,8 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
     // Fermer le menu après sélection
     if (dropdown === "food") setisIngredientFilterOpen(false);
 
-    // Effacer le texte de l'input de recherche
-    if (dropdown === "food") clearSearch();
+    // Effacer le texte de l'entrée de recherche
+    // if (dropdown === "food") clearSearch();
 
     console.log("Voici l'option choisie", optionSelected); // Affiche l'option choisie
   };
@@ -45,15 +45,15 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
   console.log("Voici l'input de recherche foodSearch", foodSearch);
 
   const handleChange = (event) => {
-    const ingredientInputSearch = event.target.value; // Utiliser directement la valeur de l'input
-    setFoodSearch(ingredientInputSearch); // Met à jour l'état
-    console.log(
-      "Voici l'ingredient recherché dans le filtre",
-      ingredientInputSearch
-    ); // Log la valeur immédiate
-    console.log("Voici l'input de recherche foodSearch", foodSearch);
+    console.log("Voici l'event de frappe", event.target.value);
+    let ingredientInputSearch = event.target.value; // Utiliser directement la valeur de l'input
+    setIngredientSearchFilter(ingredientInputSearch); // Met à jour l'état
+    console.log("Voici ingredientInputSearch", ingredientInputSearch); // Log la valeur immédiate
   };
-
+  console.log(
+    "Voici l'input de recherche ingredientSearchFilter",
+    ingredientSearchFilter
+  );
   //Effacer le texte de l'entrée de recherche
   const clearSearch = () => {
     setFoodSearch("");
@@ -89,7 +89,7 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
                 className={styles.searchInput}
                 aria-label="Search"
                 placeholder="Rechercher un aliment..."
-                value={foodSearch}
+                value={ingredientSearchFilter}
                 onChange={handleChange}
               />
               {foodSearch && (
@@ -101,7 +101,7 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
             </div>
 
             {uniqueIngredients
-              .filter((item) => item.includes(foodSearch))
+              .filter((item) => item.includes(ingredientSearchFilter))
               .map((food) => (
                 <button
                   key={food}
