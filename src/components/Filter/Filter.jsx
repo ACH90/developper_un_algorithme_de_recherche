@@ -36,6 +36,9 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
     // Fermer le menu après sélection
     if (dropdown === "food") setisIngredientFilterOpen(false);
 
+    // Effacer le texte de l'input de recherche
+    if (dropdown === "food") clearSearch();
+
     console.log("Voici l'option choisie", optionSelected); // Affiche l'option choisie
   };
 
