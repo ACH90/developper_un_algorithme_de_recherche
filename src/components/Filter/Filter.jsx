@@ -35,25 +35,13 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
 
     // Fermer le menu après sélection
     if (dropdown === "food") setisIngredientFilterOpen(false);
-
-    // Effacer le texte de l'entrée de recherche
-    // if (dropdown === "food") clearSearch();
-
-    console.log("Voici l'option choisie", optionSelected); // Affiche l'option choisie
   };
-
-  console.log("Voici l'input de recherche foodSearch", foodSearch);
 
   const handleChange = (event) => {
-    console.log("Voici l'event de frappe", event.target.value);
     let ingredientInputSearch = event.target.value; // Utiliser directement la valeur de l'input
     setIngredientSearchFilter(ingredientInputSearch); // Met à jour l'état
-    console.log("Voici ingredientInputSearch", ingredientInputSearch); // Log la valeur immédiate
   };
-  console.log(
-    "Voici l'input de recherche ingredientSearchFilter",
-    ingredientSearchFilter
-  );
+
   //Effacer le texte de l'entrée de recherche
   const clearSearch = () => {
     setFoodSearch("");
@@ -64,7 +52,7 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
     recipe.ingredients.map((item) => item.ingredient)
   );
 
-  // Supprimer les doublons (facultatif)
+  // Supprimer les doublons
   const uniqueIngredients = [...new Set(ingredientsList)];
 
   console.log(

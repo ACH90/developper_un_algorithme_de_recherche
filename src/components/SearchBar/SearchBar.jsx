@@ -17,15 +17,9 @@ const SearchBar = ({ inputValue, setInputValue }) => {
 
   // Fonction de gestion du changement dans l'input
   const handleChange = (event) => {
-    console.log(
-      "Voici la valeur de l'evennement de frappe dans SearchBar",
-      event.target.value
-    );
     let value = event.target.value;
     setInputValue(value); // Met à jour l'état lorsque l'utilisateur tape
   };
-
-  console.log("Voici l'input modifié dans SearchBar", inputValue);
 
   // Fonction pour effacer le texte de l'input
   const handleClear = () => {

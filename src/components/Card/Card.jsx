@@ -8,7 +8,6 @@ const Card = ({ inputValue, foodSearch }) => {
   // Utilisation de la fonction utilitaire
   // eslint-disable-next-line no-undef
   const filteredRecipes = filterAndMapRecipes(data, inputValue, foodSearch);
-  console.log("Voici les recettes filtrées dans card", filteredRecipes);
 
   // filterAndMapRecipesFrom2ndFilter(filteredRecipes);
 
