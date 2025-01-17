@@ -1,67 +1,84 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import styles from "./Filter.module.css";
 import { filterAndMapRecipes } from "../../filterAndMapRecipes/filterAndMapRecipes";
 import { data } from "../../dataLoader/dataLoader";
-// eslint-disable-next-line react/prop-types
+
 const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
-  // const [selectedFood] = useState("Ingredients");
   const [isIngredientFilterOpen, setisIngredientFilterOpen] = useState(false);
   const [ingredientSearchFilter, setIngredientSearchFilter] = useState("");
-  // Pour la recherche dans Aliments
-  // const [foodSearch, setFoodSearch] = useState("");
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
 
   const filteredRecipes = filterAndMapRecipes(data, inputValue, foodSearch);
-  console.log(
-    "Voici les recettes filtrées finales dans le composant Filter",
-    filteredRecipes
-  );
 
   const toggleMenu = (dropdown) => {
     if (dropdown === "food") setisIngredientFilterOpen(!isIngredientFilterOpen);
   };
 
   const handleSelect = (event, dropdown) => {
-    // Vérifiez si event.target existe
     if (!event.target) {
       console.error("Événement sans cible valide :", event);
       return;
     }
     const optionSelected = event.target.textContent;
 
-    // Mettre à jour l'état du filtre
-    setFoodSearch(optionSelected);
-    // if (option.includes("Appareil")) setSelectedDevice(option);
-    // if (option.includes("Ustensile")) setSelectedUtensil(option);
+    // Ajouter l'ingrédient sélectionné à la liste des tags
+    if (!selectedIngredients.includes(optionSelected)) {
+      setSelectedIngredients([...selectedIngredients, optionSelected]);
+      setFoodSearch(optionSelected);
+    }
 
     // Fermer le menu après sélection
     if (dropdown === "food") setisIngredientFilterOpen(false);
   };
 
   const handleChange = (event) => {
-    let ingredientInputSearch = event.target.value; // Utiliser directement la valeur de l'input
-    setIngredientSearchFilter(ingredientInputSearch); // Met à jour l'état
+    const ingredientInputSearch = event.target.value;
+    setIngredientSearchFilter(ingredientInputSearch);
   };
 
-  //Effacer le texte de l'entrée de recherche
   const clearSearch = () => {
+    setIngredientSearchFilter("");
+  };
+
+  const removeTag = (ingredient) => {
+    // Supprimer l'ingrédient des tags sélectionnés
+    const updatedTags = selectedIngredients.filter((tag) => tag !== ingredient);
+    setSelectedIngredients(updatedTags);
+
+    // Effacer la recherche associée
     setFoodSearch("");
   };
 
-  // Extraire la liste des ingrediens
+  // Extraire la liste des ingrédients
   const ingredientsList = filteredRecipes.flatMap((recipe) =>
     recipe.ingredients.map((item) => item.ingredient)
   );
 
-  // Supprimer les doublons
-  const uniqueIngredients = [...new Set(ingredientsList)];
-
-  console.log(
-    "Voici la liste des ingredients sans doublons",
-    uniqueIngredients
+  // Supprimer les doublons et exclure les ingrédients déjà sélectionnés
+  const uniqueIngredients = [...new Set(ingredientsList)].filter(
+    (ingredient) => !selectedIngredients.includes(ingredient)
   );
 
   return (
     <div className={styles.filter}>
+      {/* Liste des tags sélectionnés */}
+      <div className={styles.selectedTags}>
+        {selectedIngredients.map((ingredient) => (
+          <div key={ingredient} className={styles.tag}>
+            {ingredient}
+            <button
+              className={styles.removeTagButton}
+              onClick={() => removeTag(ingredient)}
+              aria-label={`Supprimer ${ingredient}`}
+            >
+              &#x2715;
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Dropdown pour les ingrédients */}
       <div className={styles.filterDropdown}>
         <button
           className={styles.filterToggle}
@@ -75,21 +92,25 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
               <input
                 type="text"
                 className={styles.searchInput}
-                aria-label="Search"
+                aria-label="Rechercher un aliment"
                 placeholder="Rechercher un aliment..."
                 value={ingredientSearchFilter}
                 onChange={handleChange}
               />
-              {foodSearch && (
+              {ingredientSearchFilter && (
                 <span className={styles.clearIcon} onClick={clearSearch}>
-                  &#x2715; {/* Icône "X" */}
+                  &#x2715;
                 </span>
               )}
-              <img src="./assets/Ellipse4.png" alt="Search Logo" />
             </div>
 
+            {/* Liste des options */}
             {uniqueIngredients
-              .filter((item) => item.includes(ingredientSearchFilter))
+              .filter((item) =>
+                item
+                  .toLowerCase()
+                  .includes(ingredientSearchFilter.toLowerCase())
+              )
               .map((food) => (
                 <button
                   key={food}
@@ -102,68 +123,6 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
           </div>
         )}
       </div>
-
-      {/* <div className={styles.filterDropdown}>
-        <button
-          className={styles.filterToggle}
-          onClick={() => toggleMenu("device")}
-        >
-          {selectedDevice}
-        </button>
-        {isDeviceOpen && (
-          <div className={styles.filterMenu}>
-            <button
-              className={styles.optionButton}
-              onClick={() => handleSelect("device", "Four")}
-            >
-              Four
-            </button>
-            <button
-              className={styles.optionButton}
-              onClick={() => handleSelect("device", "Blender")}
-            >
-              Blender
-            </button>
-            <button
-              className={styles.optionButton}
-              onClick={() => handleSelect("device", "Micro-ondes")}
-            >
-              Micro-ondes
-            </button>
-          </div>
-        )}
-      </div>
-
-      <div className={styles.filterDropdown}>
-        <button
-          className={styles.filterToggle}
-          onClick={() => toggleMenu("utensil")}
-        >
-          {selectedUtensil}
-        </button>
-        {isUtensilOpen && (
-          <div className={styles.filterMenu}>
-            <button
-              className={styles.optionButton}
-              onClick={() => handleSelect("utensil", "Couteau")}
-            >
-              Couteau
-            </button>
-            <button
-              className={styles.optionButton}
-              onClick={() => handleSelect("utensil", "Cuillère")}
-            >
-              Cuillère
-            </button>
-            <button
-              className={styles.optionButton}
-              onClick={() => handleSelect("utensil", "Fouet")}
-            >
-              Fouet
-            </button>
-          </div>
-        )}
-      </div> */}
     </div>
   );
 };
