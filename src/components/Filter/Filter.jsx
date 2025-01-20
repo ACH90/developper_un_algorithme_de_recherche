@@ -61,7 +61,54 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
   );
 
   return (
-    <div className={styles.filter}>
+    <div className={styles.filterContainer}>
+      <div className={styles.filter}>
+        {/* Dropdown pour les ingrédients */}
+        <div className={styles.filterDropdown}>
+          <button
+            className={styles.filterToggle}
+            onClick={() => toggleMenu("food")}
+          >
+            Ingredients
+          </button>
+          {isIngredientFilterOpen && (
+            <div className={styles.filterMenu}>
+              <div className={styles.searchInputContainer}>
+                <input
+                  type="text"
+                  className={styles.searchInput}
+                  aria-label="Rechercher un aliment"
+                  placeholder="Rechercher un aliment..."
+                  value={ingredientSearchFilter}
+                  onChange={handleChange}
+                />
+                {ingredientSearchFilter && (
+                  <span className={styles.clearIcon} onClick={clearSearch}>
+                    &#x2715;
+                  </span>
+                )}
+              </div>
+
+              {/* Liste des options */}
+              {uniqueIngredients
+                .filter((item) =>
+                  item
+                    .toLowerCase()
+                    .includes(ingredientSearchFilter.toLowerCase())
+                )
+                .map((food) => (
+                  <button
+                    key={food}
+                    className={styles.optionButton}
+                    onClick={(event) => handleSelect(event, "food")}
+                  >
+                    {food}
+                  </button>
+                ))}
+            </div>
+          )}
+        </div>
+      </div>
       {/* Liste des tags sélectionnés */}
       <div className={styles.selectedTags}>
         {selectedIngredients.map((ingredient) => (
@@ -72,56 +119,10 @@ const Filter = ({ inputValue, foodSearch, setFoodSearch }) => {
               onClick={() => removeTag(ingredient)}
               aria-label={`Supprimer ${ingredient}`}
             >
-              &#x2715;
+              X
             </button>
           </div>
         ))}
-      </div>
-
-      {/* Dropdown pour les ingrédients */}
-      <div className={styles.filterDropdown}>
-        <button
-          className={styles.filterToggle}
-          onClick={() => toggleMenu("food")}
-        >
-          Ingredients
-        </button>
-        {isIngredientFilterOpen && (
-          <div className={styles.filterMenu}>
-            <div className={styles.searchInputContainer}>
-              <input
-                type="text"
-                className={styles.searchInput}
-                aria-label="Rechercher un aliment"
-                placeholder="Rechercher un aliment..."
-                value={ingredientSearchFilter}
-                onChange={handleChange}
-              />
-              {ingredientSearchFilter && (
-                <span className={styles.clearIcon} onClick={clearSearch}>
-                  &#x2715;
-                </span>
-              )}
-            </div>
-
-            {/* Liste des options */}
-            {uniqueIngredients
-              .filter((item) =>
-                item
-                  .toLowerCase()
-                  .includes(ingredientSearchFilter.toLowerCase())
-              )
-              .map((food) => (
-                <button
-                  key={food}
-                  className={styles.optionButton}
-                  onClick={(event) => handleSelect(event, "food")}
-                >
-                  {food}
-                </button>
-              ))}
-          </div>
-        )}
       </div>
     </div>
   );

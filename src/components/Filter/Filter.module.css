@@ -5,6 +5,14 @@
     font-family: var(--font-secondary);
 
   }
+
+  .filterContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 10px;
+    font-family: var(--font-secondary);
+  }
   
  /* Filter.module.css */
 .filterDropdown {
@@ -98,4 +106,30 @@
   text-align: left;
   cursor: pointer;
   font-family: var(--font-secondary);
+}
+
+.selectedTags {
+  display: flex;
+  flex-wrap: wrap;
+
+
+}
+.tag {
+  display: flex;
+  /* flex-wrap: wrap; */
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  margin: 10px;
+  border-radius:  14px;
+  background-color: #FFD15B;
+  width: 130px;
+  height: 50px;
+}
+
+.removeTagButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
