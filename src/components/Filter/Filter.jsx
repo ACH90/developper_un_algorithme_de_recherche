@@ -204,8 +204,8 @@ const Filter = ({
                 <input
                   type="text"
                   className={styles.searchInput}
-                  aria-label="Rechercher un aliment"
-                  placeholder="Rechercher un aliment..."
+                  aria-label="Rechercher un appareil"
+                  placeholder="Rechercher un appareil..."
                   value={applianceSearchFilter}
                   onChange={handleChangeAppliances}
                 />
@@ -249,8 +249,8 @@ const Filter = ({
                 <input
                   type="text"
                   className={styles.searchInput}
-                  aria-label="Rechercher un aliment"
-                  placeholder="Rechercher un aliment..."
+                  aria-label="Rechercher un ustensil"
+                  placeholder="Rechercher un ustensil..."
                   value={ustensilsSearchFilter}
                   onChange={handleChangeUstensils}
                 />
