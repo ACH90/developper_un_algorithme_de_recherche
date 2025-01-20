@@ -1,18 +1,20 @@
 // Fonction pour filtrer et mapper les recettes
-export const filterAndMapRecipes = (
-  recipes,
+export const filterAndMapIngredientsFrom2ndFilter = (
+  ingredients,
   inputValue,
   selectedIngredient,
   selectedAppliance,
   selectedUstensils
 ) => {
-  return recipes
-    .filter((recipe) => {
+  return ingredients
+    .filter((ingredient) => {
       // Vérifie si le nom, la description ou un ingrédient correspond à la recherche
       const matchesInputValue =
-        recipe.name.toLowerCase().includes(inputValue.toLowerCase()) ||
-        recipe.description.toLowerCase().includes(inputValue.toLowerCase()) ||
-        recipe.ingredients.some((ingredientObj) =>
+        ingredient.name.toLowerCase().includes(inputValue.toLowerCase()) ||
+        ingredient.description
+          .toLowerCase()
+          .includes(inputValue.toLowerCase()) ||
+        ingredient.ingredients.some((ingredientObj) =>
           ingredientObj.ingredient
             .toLowerCase()
             .includes(inputValue.toLowerCase())
@@ -21,7 +23,7 @@ export const filterAndMapRecipes = (
       // Vérifie si un ingrédient spécifique est sélectionné et présent dans la recette
       const matchesSelectedIngredient =
         !selectedIngredient || // Pas de filtre si aucun ingrédient sélectionné
-        recipe.ingredients.some((ingredientObj) =>
+        ingredient.ingredients.some((ingredientObj) =>
           ingredientObj.ingredient
             .toLowerCase()
             .includes(selectedIngredient.toLowerCase())
@@ -29,13 +31,13 @@ export const filterAndMapRecipes = (
 
       const matchesSelectedAppliance =
         !selectedAppliance || // Pas de filtre si aucun appareil sélectionné
-        recipe.appliance
+        ingredient.appliance
           .toLowerCase()
           .includes(selectedAppliance.toLowerCase());
 
       const matchesSelectedUstensils =
         !selectedUstensils || // Pas de filtre si aucun ustensile sélectionné
-        recipe.ustensils.some((ustensil) =>
+        ingredient.ustensils.some((ustensil) =>
           ustensil.toLowerCase().includes(selectedUstensils.toLowerCase())
         );
 
@@ -47,11 +49,6 @@ export const filterAndMapRecipes = (
       );
     })
     .map((recipe) => ({
-      id: recipe.id,
-      name: recipe.name,
-      time: recipe.time,
-      image: recipe.image,
-      description: recipe.description,
       ingredients: recipe.ingredients,
       appliance: recipe.appliance,
       ustensils: recipe.ustensils,

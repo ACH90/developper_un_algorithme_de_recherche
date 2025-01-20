@@ -5,6 +5,14 @@
     font-family: var(--font-secondary);
 
   }
+
+  .filterContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 10px;
+    font-family: var(--font-secondary);
+  }
   
  /* Filter.module.css */
 .filterDropdown {
@@ -33,6 +41,8 @@
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   z-index: 1;
   width: 100%;
+  max-height: 200px; /* Limite la hauteur du menu */
+  overflow-y: auto; /* Ajoute un défilement si la liste est longue */
   font-family: var(--font-secondary);
   margin-top: 3px;
 }
@@ -96,4 +106,30 @@
   text-align: left;
   cursor: pointer;
   font-family: var(--font-secondary);
+}
+
+.selectedTags {
+  display: flex;
+  flex-wrap: wrap;
+
+
+}
+.tag {
+  display: flex;
+  /* flex-wrap: wrap; */
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  margin: 10px;
+  border-radius:  14px;
+  background-color: #FFD15B;
+  width: 130px;
+  height: 50px;
+}
+
+.removeTagButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }

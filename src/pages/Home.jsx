@@ -8,6 +8,8 @@ import dataLoader from "../dataLoader/dataLoader";
 import { useState } from "react";
 function Home() {
   const [inputValue, setInputValue] = useState("");
+  const [foodSearch, setFoodSearch] = useState(""); // Pour la recherche dans Aliments
+
   return (
     <>
       <header>
@@ -20,11 +22,16 @@ function Home() {
       </header>
       <main>
         <section className={styles.filterContainer}>
-          <Filter />
+          <Filter
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            foodSearch={foodSearch}
+            setFoodSearch={setFoodSearch}
+          />
         </section>
         {/* <section className="search-bar"></section> */}
         <section className={styles.cards}>
-          <Card inputValue={inputValue} />
+          <Card inputValue={inputValue} foodSearch={foodSearch} />
         </section>
       </main>
       <footer></footer>
