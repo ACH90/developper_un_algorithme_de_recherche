@@ -4,10 +4,18 @@ import { filterAndMapRecipes } from "./../../filterAndMapRecipes/filterAndMapRec
 // import { filterAndMapRecipesFrom2ndFilter } from "../../filterAndMapRecipesFrom2ndFilter/filterAndMapRecipesFrom2ndFilter";
 
 // eslint-disable-next-line react/prop-types
-const Card = ({ inputValue, foodSearch }) => {
+const Card = ({ inputValue, foodSearch, applianceSearch, ustensilsSearch }) => {
   // Utilisation de la fonction utilitaire
   // eslint-disable-next-line no-undef
-  const filteredRecipes = filterAndMapRecipes(data, inputValue, foodSearch);
+  const filteredRecipes = filterAndMapRecipes(
+    data,
+    inputValue,
+    foodSearch,
+    applianceSearch,
+    ustensilsSearch
+  );
+
+  console.log("Voici les filteredRecipes de Card", filteredRecipes);
 
   // filterAndMapRecipesFrom2ndFilter(filteredRecipes);
 

@@ -9,6 +9,8 @@ import { useState } from "react";
 function Home() {
   const [inputValue, setInputValue] = useState("");
   const [foodSearch, setFoodSearch] = useState(""); // Pour la recherche dans Aliments
+  const [applianceSearch, setApplianceSearch] = useState(""); // Pour la recherche dans Appareils
+  const [ustensilsSearch, setUstensilsSearch] = useState(""); // Pour la recherche dans Ustensiles
 
   return (
     <>
@@ -27,11 +29,20 @@ function Home() {
             setInputValue={setInputValue}
             foodSearch={foodSearch}
             setFoodSearch={setFoodSearch}
+            applianceSearch={applianceSearch}
+            setApplianceSearch={setApplianceSearch}
+            ustensilsSearch={ustensilsSearch}
+            setUstensilsSearch={setUstensilsSearch}
           />
         </section>
         {/* <section className="search-bar"></section> */}
         <section className={styles.cards}>
-          <Card inputValue={inputValue} foodSearch={foodSearch} />
+          <Card
+            inputValue={inputValue}
+            foodSearch={foodSearch}
+            applianceSearch={applianceSearch}
+            ustensilsSearch={ustensilsSearch}
+          />
         </section>
       </main>
       <footer></footer>
