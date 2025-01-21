@@ -52,21 +52,18 @@ const Filter = ({
     if (dropdown === "food" && !selectedIngredients.includes(optionSelected)) {
       setSelectedIngredients([...selectedIngredients, optionSelected]);
       setFoodSearch(optionSelected);
-      console.log("optionSelected Ingredients", optionSelected);
     } else if (
       dropdown === "appliance" &&
       !selectedAppliances.includes(optionSelected)
     ) {
       setSelectedAppliances([...selectedAppliances, optionSelected]);
       setApplianceSearch(optionSelected);
-      console.log("optionSelected Appliances", optionSelected);
     } else if (
       dropdown === "ustensils" &&
       !selectedUstensils.includes(optionSelected)
     ) {
       setSelectedUstensils([...selectedUstensils, optionSelected]);
       setUstensilsSearch(optionSelected);
-      console.log("optionSelected Ustensils", optionSelected);
     }
 
     // Fermer le menu après sélection
@@ -128,15 +125,12 @@ const Filter = ({
     ingredientsList,
     selectedIngredients
   );
-  console.log("uniqueIngredients", uniqueIngredients);
 
   // Supprimer les doublons et exclure les appareils déjà sélectionnés
   const uniqueAppliances = deleteDuplicates(appliancesList, selectedAppliances);
-  console.log("uniqueAppliances", uniqueAppliances);
 
   // Supprimer les doublons et exclure les ustensiles déjà sélectionnés
   const uniqueUstensils = deleteDuplicates(ustensilsList, selectedUstensils);
-  console.log("uniqueUstensils", uniqueUstensils);
 
   return (
     <div>

@@ -1,29 +1,18 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+
 import styles from "./SearchBar.module.css";
 import SearchIconButton from "../SearchIconButton/SearchIconButton";
-import { data } from "../../dataLoader/dataLoader";
 
 const SearchBar = ({ inputValue, setInputValue }) => {
-  const [datas, setDatas] = useState([]);
-
-  useEffect(() => {
-    const recipes = data;
-    console.log("Voici les plats initialisés dans searchbar", recipes);
-    console.log("Voici les datas initialisées dans SearchBar", datas);
-    (recipes) => setDatas(recipes); // Mettre les données dans l'état
-    console.log("Voici l'input initialisé dans SearchBar'", inputValue);
-  }, []); // Le tableau de dependances vide signifie que le composant sera monté une seule fois
-
   // Fonction de gestion du changement dans l'input
   const handleChange = (event) => {
     let value = event.target.value;
-    setInputValue(value); // Met à jour l'état lorsque l'utilisateur tape
+    setInputValue(value);
   };
 
   // Fonction pour effacer le texte de l'input
   const handleClear = () => {
-    setInputValue(""); // Efface le texte de l'input quand on clique sur la croix
+    setInputValue("");
   };
 
   return (
