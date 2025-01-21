@@ -139,188 +139,196 @@ const Filter = ({
   console.log("uniqueUstensils", uniqueUstensils);
 
   return (
-    <div className={styles.filterContainer}>
-      <div className={styles.filter}>
-        {/* Dropdown pour les ingrédients */}
-        <div className={styles.filterDropdown}>
-          <button
-            className={styles.filterToggle}
-            onClick={() => toggleMenu("food")}
-          >
-            Ingredients
-          </button>
-          {isIngredientFilterOpen && (
-            <div className={styles.filterMenu}>
-              <div className={styles.searchInputContainer}>
-                <input
-                  type="text"
-                  className={styles.searchInput}
-                  aria-label="Rechercher un aliment"
-                  placeholder="Rechercher un aliment..."
-                  value={ingredientSearchFilter}
-                  onChange={(event) =>
-                    handleChange(event, setIngredientSearchFilter)
-                  }
-                />
-                {ingredientSearchFilter && (
-                  <span className={styles.clearIcon} onClick={clearSearch}>
-                    &#x2715;
-                  </span>
-                )}
-              </div>
+    <div>
+      <div className={styles.filterAndTagsContainer}>
+        <div className={styles.filterContainer}>
+          <div className={styles.filter}>
+            {/* Dropdown pour les ingrédients */}
+            <div className={styles.filterDropdown}>
+              <button
+                className={styles.filterToggle}
+                onClick={() => toggleMenu("food")}
+              >
+                Ingredients
+              </button>
+              {isIngredientFilterOpen && (
+                <div className={styles.filterMenu}>
+                  <div className={styles.searchInputContainer}>
+                    <input
+                      type="text"
+                      className={styles.searchInput}
+                      aria-label="Rechercher un aliment"
+                      placeholder="Rechercher un aliment..."
+                      value={ingredientSearchFilter}
+                      onChange={(event) =>
+                        handleChange(event, setIngredientSearchFilter)
+                      }
+                    />
+                    {ingredientSearchFilter && (
+                      <span className={styles.clearIcon} onClick={clearSearch}>
+                        &#x2715;
+                      </span>
+                    )}
+                  </div>
 
-              {/* Liste des options */}
-              {uniqueIngredients
-                .filter((item) =>
-                  item
-                    .toLowerCase()
-                    .includes(ingredientSearchFilter.toLowerCase())
-                )
-                .map((food) => (
-                  <button
-                    key={food}
-                    className={styles.optionButton}
-                    onClick={(event) => handleSelect(event, "food")}
-                  >
-                    {food}
-                  </button>
-                ))}
+                  {/* Liste des options */}
+                  {uniqueIngredients
+                    .filter((item) =>
+                      item
+                        .toLowerCase()
+                        .includes(ingredientSearchFilter.toLowerCase())
+                    )
+                    .map((food) => (
+                      <button
+                        key={food}
+                        className={styles.optionButton}
+                        onClick={(event) => handleSelect(event, "food")}
+                      >
+                        {food}
+                      </button>
+                    ))}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        {/* Dropdown pour les appliances */}
-        <div className={styles.filterDropdown}>
-          <button
-            className={styles.filterToggle}
-            onClick={() => toggleMenu("appliance")}
-          >
-            Appareils
-          </button>
-          {isApplianceFilterOpen && (
-            <div className={styles.filterMenu}>
-              <div className={styles.searchInputContainer}>
-                <input
-                  type="text"
-                  className={styles.searchInput}
-                  aria-label="Rechercher un appareil"
-                  placeholder="Rechercher un appareil..."
-                  value={applianceSearchFilter}
-                  onChange={(event) =>
-                    handleChange(event, setApplianceSearchFilter)
-                  }
-                />
-                {applianceSearchFilter && (
-                  <span className={styles.clearIcon} onClick={clearSearch}>
-                    &#x2715;
-                  </span>
-                )}
-              </div>
+            {/* Dropdown pour les appliances */}
+            <div className={styles.filterDropdown}>
+              <button
+                className={styles.filterToggle}
+                onClick={() => toggleMenu("appliance")}
+              >
+                Appareils
+              </button>
+              {isApplianceFilterOpen && (
+                <div className={styles.filterMenu}>
+                  <div className={styles.searchInputContainer}>
+                    <input
+                      type="text"
+                      className={styles.searchInput}
+                      aria-label="Rechercher un appareil"
+                      placeholder="Rechercher un appareil..."
+                      value={applianceSearchFilter}
+                      onChange={(event) =>
+                        handleChange(event, setApplianceSearchFilter)
+                      }
+                    />
+                    {applianceSearchFilter && (
+                      <span className={styles.clearIcon} onClick={clearSearch}>
+                        &#x2715;
+                      </span>
+                    )}
+                  </div>
 
-              {/* Liste des options */}
-              {uniqueAppliances
-                .filter((item) =>
-                  item
-                    .toLowerCase()
-                    .includes(applianceSearchFilter.toLowerCase())
-                )
-                .map((food) => (
-                  <button
-                    key={food}
-                    className={styles.optionButton}
-                    onClick={(event) => handleSelect(event, "appliance")}
-                  >
-                    {food}
-                  </button>
-                ))}
+                  {/* Liste des options */}
+                  {uniqueAppliances
+                    .filter((item) =>
+                      item
+                        .toLowerCase()
+                        .includes(applianceSearchFilter.toLowerCase())
+                    )
+                    .map((food) => (
+                      <button
+                        key={food}
+                        className={styles.optionButton}
+                        onClick={(event) => handleSelect(event, "appliance")}
+                      >
+                        {food}
+                      </button>
+                    ))}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        {/* Dropdown pour les ustensiles */}
-        <div className={styles.filterDropdown}>
-          <button
-            className={styles.filterToggle}
-            onClick={() => toggleMenu("ustensils")}
-          >
-            Ustensils
-          </button>
-          {isUstensilsFilterOpen && (
-            <div className={styles.filterMenu}>
-              <div className={styles.searchInputContainer}>
-                <input
-                  type="text"
-                  className={styles.searchInput}
-                  aria-label="Rechercher un ustensil"
-                  placeholder="Rechercher un ustensil..."
-                  value={ustensilsSearchFilter}
-                  onChange={(event) =>
-                    handleChange(event, setUstensilsSearchFilter)
-                  }
-                />
-                {ustensilsSearchFilter && (
-                  <span className={styles.clearIcon} onClick={clearSearch}>
-                    &#x2715;
-                  </span>
-                )}
-              </div>
+            {/* Dropdown pour les ustensiles */}
+            <div className={styles.filterDropdown}>
+              <button
+                className={styles.filterToggle}
+                onClick={() => toggleMenu("ustensils")}
+              >
+                Ustensils
+              </button>
+              {isUstensilsFilterOpen && (
+                <div className={styles.filterMenu}>
+                  <div className={styles.searchInputContainer}>
+                    <input
+                      type="text"
+                      className={styles.searchInput}
+                      aria-label="Rechercher un ustensil"
+                      placeholder="Rechercher un ustensil..."
+                      value={ustensilsSearchFilter}
+                      onChange={(event) =>
+                        handleChange(event, setUstensilsSearchFilter)
+                      }
+                    />
+                    {ustensilsSearchFilter && (
+                      <span className={styles.clearIcon} onClick={clearSearch}>
+                        &#x2715;
+                      </span>
+                    )}
+                  </div>
 
-              {/* Liste des options */}
-              {uniqueUstensils
-                .filter((item) =>
-                  item
-                    .toLowerCase()
-                    .includes(ustensilsSearchFilter.toLowerCase())
-                )
-                .map((food) => (
-                  <button
-                    key={food}
-                    className={styles.optionButton}
-                    onClick={(event) => handleSelect(event, "ustensils")}
-                  >
-                    {food}
-                  </button>
-                ))}
+                  {/* Liste des options */}
+                  {uniqueUstensils
+                    .filter((item) =>
+                      item
+                        .toLowerCase()
+                        .includes(ustensilsSearchFilter.toLowerCase())
+                    )
+                    .map((food) => (
+                      <button
+                        key={food}
+                        className={styles.optionButton}
+                        onClick={(event) => handleSelect(event, "ustensils")}
+                      >
+                        {food}
+                      </button>
+                    ))}
+                </div>
+              )}
             </div>
-          )}
+          </div>
+          {/* Total des recettes */}
+          <div className={styles.totalRecipes}>
+            <p>{filteredRecipes.length} Recettes</p>
+          </div>
         </div>
-      </div>
-      {/* Liste des tags sélectionnés */}
-      <div className={styles.selectedTags}>
-        {selectedIngredients.map((ingredient) => (
-          <div key={ingredient} className={styles.tag}>
-            {ingredient}
-            <button
-              className={styles.removeTagButton}
-              onClick={() => removeTag(ingredient, "food")}
-              aria-label={`Supprimer ${ingredient}`}
-            >
-              X
-            </button>
-          </div>
-        ))}
-        {selectedAppliances.map((appliance) => (
-          <div key={appliance} className={styles.tag}>
-            {appliance}
-            <button
-              className={styles.removeTagButton}
-              onClick={() => removeTag(appliance, "appliance")}
-              aria-label={`Supprimer ${appliance}`}
-            >
-              X
-            </button>
-          </div>
-        ))}
-        {selectedUstensils.map((ustensil) => (
-          <div key={ustensil} className={styles.tag}>
-            {ustensil}
-            <button
-              className={styles.removeTagButton}
-              onClick={() => removeTag(ustensil, "ustensils")}
-              aria-label={`Supprimer ${ustensil}`}
-            >
-              X
-            </button>
-          </div>
-        ))}
+        {/* Liste des tags sélectionnés */}
+        <div className={styles.selectedTags}>
+          {selectedIngredients.map((ingredient) => (
+            <div key={ingredient} className={styles.tag}>
+              {ingredient}
+              <button
+                className={styles.removeTagButton}
+                onClick={() => removeTag(ingredient, "food")}
+                aria-label={`Supprimer ${ingredient}`}
+              >
+                X
+              </button>
+            </div>
+          ))}
+          {selectedAppliances.map((appliance) => (
+            <div key={appliance} className={styles.tag}>
+              {appliance}
+              <button
+                className={styles.removeTagButton}
+                onClick={() => removeTag(appliance, "appliance")}
+                aria-label={`Supprimer ${appliance}`}
+              >
+                X
+              </button>
+            </div>
+          ))}
+          {selectedUstensils.map((ustensil) => (
+            <div key={ustensil} className={styles.tag}>
+              {ustensil}
+              <button
+                className={styles.removeTagButton}
+                onClick={() => removeTag(ustensil, "ustensils")}
+                aria-label={`Supprimer ${ustensil}`}
+              >
+                X
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
