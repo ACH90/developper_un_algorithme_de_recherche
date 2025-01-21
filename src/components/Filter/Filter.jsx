@@ -102,36 +102,41 @@ const Filter = ({
     }
   };
 
-  // Extraire la liste des ingrédients
+  // Extraire la liste des ingrédients en minuscule
   const ingredientsList = filteredRecipes.flatMap((recipe) =>
-    recipe.ingredients.map((item) => item.ingredient)
+    recipe.ingredients.map((item) => item.ingredient.toLowerCase())
   );
 
-  console.log("ingredientsList", ingredientsList);
+  // Extraire la liste des appareils en minuscule
+  const appliancesList = filteredRecipes.map((recipe) =>
+    recipe.appliance.toLowerCase()
+  );
 
-  // Extraire la liste des appareils
-  const appliancesList = filteredRecipes.map((recipe) => recipe.appliance);
+  // Extraire la liste des ustensiles en minuscule
+  const ustensilsList = filteredRecipes.flatMap((recipe) =>
+    recipe.ustensils.map((ustensil) => ustensil.toLowerCase())
+  );
 
-  console.log("appliancesList", appliancesList);
-
-  // Extraire la liste des ustensiles
-  const ustensilsList = filteredRecipes.flatMap((recipe) => recipe.ustensils);
-
-  console.log("ustensilsList", ustensilsList);
+  const deleteDuplicates = (ListValues, selectedValues) => {
+    return [...new Set(ListValues)].filter(
+      (value) => !selectedValues.includes(value)
+    );
+  };
 
   // Supprimer les doublons et exclure les ingrédients déjà sélectionnés
-  const uniqueIngredients = [...new Set(ingredientsList)].filter(
-    (ingredient) => !selectedIngredients.includes(ingredient)
+  const uniqueIngredients = deleteDuplicates(
+    ingredientsList,
+    selectedIngredients
   );
   console.log("uniqueIngredients", uniqueIngredients);
 
-  const uniqueAppliances = [...new Set(appliancesList)].filter(
-    (appliance) => !selectedAppliances.includes(appliance)
-  );
+  // Supprimer les doublons et exclure les appareils déjà sélectionnés
+  const uniqueAppliances = deleteDuplicates(appliancesList, selectedAppliances);
+  console.log("uniqueAppliances", uniqueAppliances);
 
-  const uniqueUstensils = [...new Set(ustensilsList)].filter(
-    (ustensil) => !selectedUstensils.includes(ustensil)
-  );
+  // Supprimer les doublons et exclure les ustensiles déjà sélectionnés
+  const uniqueUstensils = deleteDuplicates(ustensilsList, selectedUstensils);
+  console.log("uniqueUstensils", uniqueUstensils);
 
   return (
     <div className={styles.filterContainer}>
