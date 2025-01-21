@@ -75,19 +75,9 @@ const Filter = ({
     if (dropdown === "ustensils") setisUstensilsFilterOpen(false);
   };
 
-  const handleChangeIngredients = (event) => {
-    const ingredientInputSearch = event.target.value;
-    setIngredientSearchFilter(ingredientInputSearch);
-  };
-
-  const handleChangeAppliances = (event) => {
-    const applianceInputSearch = event.target.value;
-    setApplianceSearchFilter(applianceInputSearch);
-  };
-
-  const handleChangeUstensils = (event) => {
-    const ustensilsInputSearch = event.target.value;
-    setUstensilsSearchFilter(ustensilsInputSearch);
+  const handleChange = (event, setSearchFilter) => {
+    const inputSearch = event.target.value;
+    setSearchFilter(inputSearch);
   };
 
   const clearSearch = () => {
@@ -133,6 +123,7 @@ const Filter = ({
   const uniqueIngredients = [...new Set(ingredientsList)].filter(
     (ingredient) => !selectedIngredients.includes(ingredient)
   );
+  console.log("uniqueIngredients", uniqueIngredients);
 
   const uniqueAppliances = [...new Set(appliancesList)].filter(
     (appliance) => !selectedAppliances.includes(appliance)
@@ -162,7 +153,9 @@ const Filter = ({
                   aria-label="Rechercher un aliment"
                   placeholder="Rechercher un aliment..."
                   value={ingredientSearchFilter}
-                  onChange={handleChangeIngredients}
+                  onChange={(event) =>
+                    handleChange(event, setIngredientSearchFilter)
+                  }
                 />
                 {ingredientSearchFilter && (
                   <span className={styles.clearIcon} onClick={clearSearch}>
@@ -207,7 +200,9 @@ const Filter = ({
                   aria-label="Rechercher un appareil"
                   placeholder="Rechercher un appareil..."
                   value={applianceSearchFilter}
-                  onChange={handleChangeAppliances}
+                  onChange={(event) =>
+                    handleChange(event, setApplianceSearchFilter)
+                  }
                 />
                 {applianceSearchFilter && (
                   <span className={styles.clearIcon} onClick={clearSearch}>
@@ -252,7 +247,9 @@ const Filter = ({
                   aria-label="Rechercher un ustensil"
                   placeholder="Rechercher un ustensil..."
                   value={ustensilsSearchFilter}
-                  onChange={handleChangeUstensils}
+                  onChange={(event) =>
+                    handleChange(event, setUstensilsSearchFilter)
+                  }
                 />
                 {ustensilsSearchFilter && (
                   <span className={styles.clearIcon} onClick={clearSearch}>
