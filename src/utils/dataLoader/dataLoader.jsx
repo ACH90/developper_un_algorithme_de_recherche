@@ -1,4 +1,4 @@
-import recipes from "../data/recipes";
+import recipes from "../../data/recipes";
 
 // Si vous avez besoin d'une console pour vérifier les données
 // console.log(recipes);

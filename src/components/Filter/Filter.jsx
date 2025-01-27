@@ -2,17 +2,11 @@
 
 import { useState, useEffect } from "react";
 import styles from "./Filter.module.css";
-import { filterAndMapRecipes } from "../../filterAndMapRecipes/filterAndMapRecipes";
-import { data } from "../../dataLoader/dataLoader";
+import { filterAndMapRecipes } from "../../utils/filterAndMapRecipes/filterAndMapRecipes";
+import { data } from "../../utils/dataLoader/dataLoader";
 
 const Filter = ({
   inputValue,
-  // foodSearch,
-  // setFoodSearch,
-  // applianceSearch,
-  // setApplianceSearch,
-  // ustensilsSearch,
-  // setUstensilsSearch,
   selectedIngredients,
   setSelectedIngredients,
   selectedAppliances,

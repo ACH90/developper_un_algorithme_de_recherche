@@ -4,7 +4,6 @@ import Logo from "../components/Logo/logo";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Filter from "../components/Filter/Filter";
 import Card from "../components/Card/Card";
-import dataLoader from "../dataLoader/dataLoader";
 import { useState } from "react";
 function Home() {
   const [inputValue, setInputValue] = useState("");
@@ -35,7 +34,6 @@ function Home() {
             setSelectedUstensils={setSelectedUstensils}
           />
         </section>
-        {/* <section className="search-bar"></section> */}
         <section className={styles.cards}>
           <Card
             inputValue={inputValue}
