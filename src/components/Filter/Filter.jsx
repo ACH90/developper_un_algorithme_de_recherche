@@ -7,8 +7,8 @@ import { data } from "../../dataLoader/dataLoader";
 
 const Filter = ({
   inputValue,
-  foodSearch,
-  setFoodSearch,
+  // foodSearch,
+  // setFoodSearch,
   applianceSearch,
   setApplianceSearch,
   ustensilsSearch,
@@ -91,8 +91,8 @@ const Filter = ({
   useEffect(() => {
     console.log("Options ingredients sélectionnées :", selectedIngredients);
   }, [selectedIngredients]);
-  console.log("Type de foodSearch :", typeof foodSearch);
-  console.log("foodsearch", foodSearch);
+  // console.log("Type de foodSearch :", typeof foodSearch);
+  // console.log("foodsearch", foodSearch);
   useEffect(() => {
     console.log("Options appliance sélectionnée :", selectedAppliances);
   }, [selectedAppliances]);
@@ -116,7 +116,7 @@ const Filter = ({
     if (category === "food") {
       const updatedTags = selectedIngredients.filter((item) => item !== tag);
       setSelectedIngredients(updatedTags);
-      if (updatedTags.length === 0) setFoodSearch([]); // Si aucun ingrédient n'est sélectionné
+      if (updatedTags.length === 0) setSelectedIngredients([]); // Si aucun ingrédient n'est sélectionné
     } else if (category === "appliance") {
       const updatedTags = selectedAppliances.filter((item) => item !== tag);
       setSelectedAppliances(updatedTags);

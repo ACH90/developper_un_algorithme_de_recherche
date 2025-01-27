@@ -12,7 +12,7 @@ const SearchBar = ({ inputValue, setInputValue }) => {
 
   // Fonction pour effacer le texte de l'input
   const handleClear = () => {
-    setInputValue([""]);
+    setInputValue("");
   };
 
   return (
