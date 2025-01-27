@@ -1,19 +1,25 @@
+/* eslint-disable react/prop-types */
 import style from "./Card.module.css";
 import { data } from "../../dataLoader/dataLoader";
 import { filterAndMapRecipes } from "./../../filterAndMapRecipes/filterAndMapRecipes";
 
 // eslint-disable-next-line react/prop-types
-const Card = ({ inputValue, foodSearch, applianceSearch, ustensilsSearch }) => {
+const Card = ({
+  inputValue,
+  selectedIngredients,
+  selectedAppliances,
+  selectedUstensils,
+}) => {
   // eslint-disable-next-line no-undef
   const filteredRecipes = filterAndMapRecipes(
     data,
     inputValue,
-    foodSearch,
-    applianceSearch,
-    ustensilsSearch
+    selectedIngredients,
+    selectedAppliances,
+    selectedUstensils
   );
 
-  // console.log("Voici les filteredRecipes de Card", filteredRecipes);
+  console.log("Voici les filteredRecipes de Card", filteredRecipes);
 
   return (
     <>

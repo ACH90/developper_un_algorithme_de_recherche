@@ -8,9 +8,12 @@ import dataLoader from "../dataLoader/dataLoader";
 import { useState } from "react";
 function Home() {
   const [inputValue, setInputValue] = useState("");
-  const [foodSearch, setFoodSearch] = useState(""); // Pour la recherche dans Aliments
-  const [applianceSearch, setApplianceSearch] = useState(""); // Pour la recherche dans Appareils
-  const [ustensilsSearch, setUstensilsSearch] = useState(""); // Pour la recherche dans Ustensiles
+  const [foodSearch, setFoodSearch] = useState([]); // Pour la recherche dans Aliments
+  const [applianceSearch, setApplianceSearch] = useState([]); // Pour la recherche dans Appareils
+  const [ustensilsSearch, setUstensilsSearch] = useState([]); // Pour la recherche dans Ustensiles
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [selectedAppliances, setSelectedAppliances] = useState([]);
+  const [selectedUstensils, setSelectedUstensils] = useState([]);
 
   return (
     <>
@@ -33,6 +36,12 @@ function Home() {
             setApplianceSearch={setApplianceSearch}
             ustensilsSearch={ustensilsSearch}
             setUstensilsSearch={setUstensilsSearch}
+            selectedIngredients={selectedIngredients}
+            setSelectedIngredients={setSelectedIngredients}
+            selectedAppliances={selectedAppliances}
+            setSelectedAppliances={setSelectedAppliances}
+            selectedUstensils={selectedUstensils}
+            setSelectedUstensils={setSelectedUstensils}
           />
         </section>
         {/* <section className="search-bar"></section> */}
@@ -42,6 +51,9 @@ function Home() {
             foodSearch={foodSearch}
             applianceSearch={applianceSearch}
             ustensilsSearch={ustensilsSearch}
+            selectedIngredients={selectedIngredients}
+            selectedAppliances={selectedAppliances}
+            selectedUstensils={selectedUstensils}
           />
         </section>
       </main>
