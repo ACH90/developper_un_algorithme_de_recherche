@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import styles from "./Filter.module.css";
 import { filterAndMapRecipes } from "../../filterAndMapRecipes/filterAndMapRecipes";
 import { data } from "../../dataLoader/dataLoader";
@@ -12,25 +13,31 @@ const Filter = ({
   setApplianceSearch,
   ustensilsSearch,
   setUstensilsSearch,
+  selectedIngredients,
+  setSelectedIngredients,
+  selectedAppliances,
+  setSelectedAppliances,
+  selectedUstensils,
+  setSelectedUstensils,
 }) => {
   const [isIngredientFilterOpen, setisIngredientFilterOpen] = useState(false);
   const [ingredientSearchFilter, setIngredientSearchFilter] = useState("");
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
 
   const [isApplianceFilterOpen, setisApplianceFilterOpen] = useState(false);
   const [applianceSearchFilter, setApplianceSearchFilter] = useState("");
-  const [selectedAppliances, setSelectedAppliances] = useState([]);
 
   const [isUstensilsFilterOpen, setisUstensilsFilterOpen] = useState(false);
   const [ustensilsSearchFilter, setUstensilsSearchFilter] = useState("");
-  const [selectedUstensils, setSelectedUstensils] = useState([]);
 
   const filteredRecipes = filterAndMapRecipes(
     data,
     inputValue,
-    foodSearch,
-    applianceSearch,
-    ustensilsSearch
+    // foodSearch,
+    selectedIngredients,
+    selectedAppliances,
+    selectedUstensils
+    // applianceSearch,
+    // ustensilsSearch
   );
 
   const toggleMenu = (dropdown) => {
@@ -51,27 +58,49 @@ const Filter = ({
     // Ajouter l'option sélectionnée uniquement à la catégorie appropriée
     if (dropdown === "food" && !selectedIngredients.includes(optionSelected)) {
       setSelectedIngredients([...selectedIngredients, optionSelected]);
-      setFoodSearch(optionSelected);
+      // setFoodSearch([optionSelected]);
     } else if (
       dropdown === "appliance" &&
       !selectedAppliances.includes(optionSelected)
     ) {
       setSelectedAppliances([...selectedAppliances, optionSelected]);
-      setApplianceSearch(optionSelected);
+      // setApplianceSearch([optionSelected]);
     } else if (
       dropdown === "ustensils" &&
       !selectedUstensils.includes(optionSelected)
     ) {
       setSelectedUstensils([...selectedUstensils, optionSelected]);
-      setUstensilsSearch(optionSelected);
+      // setUstensilsSearch([optionSelected]);
     }
 
     // Fermer le menu après sélection
-    if (dropdown === "food") setisIngredientFilterOpen(false);
-    if (dropdown === "appliance") setisApplianceFilterOpen(false);
-    if (dropdown === "ustensils") setisUstensilsFilterOpen(false);
+    if (dropdown === "food") {
+      setisIngredientFilterOpen(false);
+    } else if (dropdown === "appliance") {
+      setisApplianceFilterOpen(false);
+    } else if (dropdown === "ustensils") {
+      setisUstensilsFilterOpen(false);
+    }
+
+    console.log("Options ingredient sélectionnée :", selectedIngredients);
+    console.log("Options appliance sélectionnée :", selectedAppliances);
+    console.log("Options ustensils sélectionnées :", selectedUstensils);
   };
 
+  // Utiliser useEffect pour réagir aux changements d'état
+  useEffect(() => {
+    console.log("Options ingredients sélectionnées :", selectedIngredients);
+  }, [selectedIngredients]);
+  console.log("Type de foodSearch :", typeof foodSearch);
+  console.log("foodsearch", foodSearch);
+  useEffect(() => {
+    console.log("Options appliance sélectionnée :", selectedAppliances);
+  }, [selectedAppliances]);
+  console.log("Type de applianceSearch :", typeof applianceSearch);
+  useEffect(() => {
+    console.log("Options ustensils sélectionnées :", selectedUstensils);
+  }, [selectedUstensils]);
+  console.log("Type de ustensilsSearch :", typeof ustensilsSearch);
   const handleChange = (event, setSearchFilter) => {
     const inputSearch = event.target.value;
     setSearchFilter(inputSearch);
@@ -87,7 +116,7 @@ const Filter = ({
     if (category === "food") {
       const updatedTags = selectedIngredients.filter((item) => item !== tag);
       setSelectedIngredients(updatedTags);
-      if (updatedTags.length === 0) setFoodSearch(""); // Si aucun ingrédient n'est sélectionné
+      if (updatedTags.length === 0) setFoodSearch([]); // Si aucun ingrédient n'est sélectionné
     } else if (category === "appliance") {
       const updatedTags = selectedAppliances.filter((item) => item !== tag);
       setSelectedAppliances(updatedTags);
@@ -114,9 +143,9 @@ const Filter = ({
     recipe.ustensils.map((ustensil) => ustensil.toLowerCase())
   );
 
-  const deleteDuplicates = (ListValues, selectedValues) => {
-    return [...new Set(ListValues)].filter(
-      (value) => !selectedValues.includes(value)
+  const deleteDuplicates = (listValues, selectedValues) => {
+    return [...new Set(listValues.map((item) => item.toLowerCase()))].filter(
+      (value) => !selectedValues.includes(value.toLowerCase())
     );
   };
 
