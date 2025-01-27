@@ -32,12 +32,9 @@ const Filter = ({
   const filteredRecipes = filterAndMapRecipes(
     data,
     inputValue,
-    // foodSearch,
     selectedIngredients,
     selectedAppliances,
     selectedUstensils
-    // applianceSearch,
-    // ustensilsSearch
   );
 
   const toggleMenu = (dropdown) => {
@@ -58,19 +55,16 @@ const Filter = ({
     // Ajouter l'option sélectionnée uniquement à la catégorie appropriée
     if (dropdown === "food" && !selectedIngredients.includes(optionSelected)) {
       setSelectedIngredients([...selectedIngredients, optionSelected]);
-      // setFoodSearch([optionSelected]);
     } else if (
       dropdown === "appliance" &&
       !selectedAppliances.includes(optionSelected)
     ) {
       setSelectedAppliances([...selectedAppliances, optionSelected]);
-      // setApplianceSearch([optionSelected]);
     } else if (
       dropdown === "ustensils" &&
       !selectedUstensils.includes(optionSelected)
     ) {
       setSelectedUstensils([...selectedUstensils, optionSelected]);
-      // setUstensilsSearch([optionSelected]);
     }
 
     // Fermer le menu après sélection
@@ -91,16 +85,12 @@ const Filter = ({
   useEffect(() => {
     console.log("Options ingredients sélectionnées :", selectedIngredients);
   }, [selectedIngredients]);
-  // console.log("Type de foodSearch :", typeof foodSearch);
-  // console.log("foodsearch", foodSearch);
   useEffect(() => {
     console.log("Options appliance sélectionnée :", selectedAppliances);
   }, [selectedAppliances]);
-  // console.log("Type de applianceSearch :", typeof applianceSearch);
   useEffect(() => {
     console.log("Options ustensils sélectionnées :", selectedUstensils);
   }, [selectedUstensils]);
-  console.log("Type de ustensilsSearch :", typeof ustensilsSearch);
   const handleChange = (event, setSearchFilter) => {
     const inputSearch = event.target.value;
     setSearchFilter(inputSearch);
