@@ -9,10 +9,10 @@ const Filter = ({
   inputValue,
   // foodSearch,
   // setFoodSearch,
-  applianceSearch,
-  setApplianceSearch,
-  ustensilsSearch,
-  setUstensilsSearch,
+  // applianceSearch,
+  // setApplianceSearch,
+  // ustensilsSearch,
+  // setUstensilsSearch,
   selectedIngredients,
   setSelectedIngredients,
   selectedAppliances,
@@ -96,7 +96,7 @@ const Filter = ({
   useEffect(() => {
     console.log("Options appliance sélectionnée :", selectedAppliances);
   }, [selectedAppliances]);
-  console.log("Type de applianceSearch :", typeof applianceSearch);
+  // console.log("Type de applianceSearch :", typeof applianceSearch);
   useEffect(() => {
     console.log("Options ustensils sélectionnées :", selectedUstensils);
   }, [selectedUstensils]);
@@ -120,11 +120,11 @@ const Filter = ({
     } else if (category === "appliance") {
       const updatedTags = selectedAppliances.filter((item) => item !== tag);
       setSelectedAppliances(updatedTags);
-      if (updatedTags.length === 0) setApplianceSearch("");
+      if (updatedTags.length === 0) setSelectedAppliances([]);
     } else if (category === "ustensils") {
       const updatedTags = selectedUstensils.filter((item) => item !== tag);
       setSelectedUstensils(updatedTags);
-      if (updatedTags.length === 0) setUstensilsSearch("");
+      if (updatedTags.length === 0) setSelectedUstensils([]);
     }
   };
 

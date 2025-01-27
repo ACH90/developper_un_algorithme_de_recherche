@@ -8,7 +8,7 @@ import dataLoader from "../dataLoader/dataLoader";
 import { useState } from "react";
 function Home() {
   const [inputValue, setInputValue] = useState("");
-  const [foodSearch, setFoodSearch] = useState([]); // Pour la recherche dans Aliments
+  // const [foodSearch, setFoodSearch] = useState([]);
   const [applianceSearch, setApplianceSearch] = useState([]); // Pour la recherche dans Appareils
   const [ustensilsSearch, setUstensilsSearch] = useState([]); // Pour la recherche dans Ustensiles
   const [selectedIngredients, setSelectedIngredients] = useState([]);
@@ -30,12 +30,12 @@ function Home() {
           <Filter
             inputValue={inputValue}
             setInputValue={setInputValue}
-            foodSearch={foodSearch}
-            setFoodSearch={setFoodSearch}
-            applianceSearch={applianceSearch}
-            setApplianceSearch={setApplianceSearch}
-            ustensilsSearch={ustensilsSearch}
-            setUstensilsSearch={setUstensilsSearch}
+            // foodSearch={foodSearch}
+            // setFoodSearch={setFoodSearch}
+            // applianceSearch={applianceSearch}
+            // setApplianceSearch={setApplianceSearch}
+            // ustensilsSearch={ustensilsSearch}
+            // setUstensilsSearch={setUstensilsSearch}
             selectedIngredients={selectedIngredients}
             setSelectedIngredients={setSelectedIngredients}
             selectedAppliances={selectedAppliances}
@@ -48,9 +48,9 @@ function Home() {
         <section className={styles.cards}>
           <Card
             inputValue={inputValue}
-            foodSearch={foodSearch}
-            applianceSearch={applianceSearch}
-            ustensilsSearch={ustensilsSearch}
+            // foodSearch={foodSearch}
+            // applianceSearch={applianceSearch}
+            // ustensilsSearch={ustensilsSearch}
             selectedIngredients={selectedIngredients}
             selectedAppliances={selectedAppliances}
             selectedUstensils={selectedUstensils}
