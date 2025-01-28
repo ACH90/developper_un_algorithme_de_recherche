@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import styles from "/src/pages/Home.module.css";
-import Logo from "../components/Logo/logo";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Filter from "../components/Filter/Filter";
 import Card from "../components/Card/Card";
@@ -14,7 +13,7 @@ function Home() {
   return (
     <>
       <header>
-        <Logo />
+        <img src="assets/Logo.png" alt="Logo" className={styles.logo} />
         <h1>
           CHERCHEZ PARMIS PLUS DE 15000 RECETTES DU QUOTIDIEN, SIMPLES ET
           DELICIEUSES

@@ -36,6 +36,19 @@
     padding: 10px;
 }
 
+.searchIconButton {
+    width: 51px; /* Ajuster la taille du bouton */
+    height: 52px;
+    background-image: url('/public/assets/Glass.png');
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .searchIconButton:hover {
+    background-image: url('/public/assets/GlassVar.png');
+  }
+  
 .clearIconContainer {
     display: flex;
     align-items: center;

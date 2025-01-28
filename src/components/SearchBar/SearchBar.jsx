@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 import styles from "./SearchBar.module.css";
-import SearchIconButton from "../SearchIconButton/SearchIconButton";
 import { handleChange, handleClear } from "./SearchBar_Utils";
 
 const SearchBar = ({ inputValue, setInputValue }) => {
@@ -32,12 +31,9 @@ const SearchBar = ({ inputValue, setInputValue }) => {
           </div>
 
           <div className={styles.searchIconButtonContainer}>
-            <SearchIconButton />
+            <button className={styles.searchIconButton}></button>
           </div>
         </div>
-      </div>
-      <div className="searchResults">
-        <div className="searchResult">données</div>
       </div>
     </>
   );
