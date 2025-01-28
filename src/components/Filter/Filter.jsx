@@ -4,6 +4,13 @@ import { useState, useEffect } from "react";
 import styles from "./Filter.module.css";
 import { filterAndMapRecipes } from "../../utils/filterAndMapRecipes/filterAndMapRecipes";
 import { data } from "../../utils/dataLoader/dataLoader";
+import {
+  deleteDuplicates,
+  toggleMenu,
+  clearSearch,
+  removeTag,
+  handleSelect,
+} from "./Filter_Utils";
 
 const Filter = ({
   inputValue,
@@ -31,50 +38,6 @@ const Filter = ({
     selectedUstensils
   );
 
-  const toggleMenu = (dropdown) => {
-    if (dropdown === "food") setisIngredientFilterOpen(!isIngredientFilterOpen);
-    if (dropdown === "appliance")
-      setisApplianceFilterOpen(!isApplianceFilterOpen);
-    if (dropdown === "ustensils")
-      setisUstensilsFilterOpen(!isUstensilsFilterOpen);
-  };
-
-  const handleSelect = (event, dropdown) => {
-    if (!event.target) {
-      console.error("Événement sans cible valide :", event);
-      return;
-    }
-    const optionSelected = event.target.textContent;
-
-    // Ajouter l'option sélectionnée uniquement à la catégorie appropriée
-    if (dropdown === "food" && !selectedIngredients.includes(optionSelected)) {
-      setSelectedIngredients([...selectedIngredients, optionSelected]);
-    } else if (
-      dropdown === "appliance" &&
-      !selectedAppliances.includes(optionSelected)
-    ) {
-      setSelectedAppliances([...selectedAppliances, optionSelected]);
-    } else if (
-      dropdown === "ustensils" &&
-      !selectedUstensils.includes(optionSelected)
-    ) {
-      setSelectedUstensils([...selectedUstensils, optionSelected]);
-    }
-
-    // Fermer le menu après sélection
-    if (dropdown === "food") {
-      setisIngredientFilterOpen(false);
-    } else if (dropdown === "appliance") {
-      setisApplianceFilterOpen(false);
-    } else if (dropdown === "ustensils") {
-      setisUstensilsFilterOpen(false);
-    }
-
-    console.log("Options ingredient sélectionnée :", selectedIngredients);
-    console.log("Options appliance sélectionnée :", selectedAppliances);
-    console.log("Options ustensils sélectionnées :", selectedUstensils);
-  };
-
   // Utiliser useEffect pour réagir aux changements d'état
   useEffect(() => {
     console.log("Options ingredients sélectionnées :", selectedIngredients);
@@ -88,28 +51,6 @@ const Filter = ({
   const handleChange = (event, setSearchFilter) => {
     const inputSearch = event.target.value;
     setSearchFilter(inputSearch);
-  };
-
-  const clearSearch = () => {
-    setIngredientSearchFilter("");
-    setApplianceSearchFilter("");
-    setUstensilsSearchFilter("");
-  };
-
-  const removeTag = (tag, category) => {
-    if (category === "food") {
-      const updatedTags = selectedIngredients.filter((item) => item !== tag);
-      setSelectedIngredients(updatedTags);
-      if (updatedTags.length === 0) setSelectedIngredients([]); // Si aucun ingrédient n'est sélectionné
-    } else if (category === "appliance") {
-      const updatedTags = selectedAppliances.filter((item) => item !== tag);
-      setSelectedAppliances(updatedTags);
-      if (updatedTags.length === 0) setSelectedAppliances([]);
-    } else if (category === "ustensils") {
-      const updatedTags = selectedUstensils.filter((item) => item !== tag);
-      setSelectedUstensils(updatedTags);
-      if (updatedTags.length === 0) setSelectedUstensils([]);
-    }
   };
 
   // Extraire la liste des ingrédients en minuscule
@@ -126,12 +67,6 @@ const Filter = ({
   const ustensilsList = filteredRecipes.flatMap((recipe) =>
     recipe.ustensils.map((ustensil) => ustensil.toLowerCase())
   );
-
-  const deleteDuplicates = (listValues, selectedValues) => {
-    return [...new Set(listValues.map((item) => item.toLowerCase()))].filter(
-      (value) => !selectedValues.includes(value.toLowerCase())
-    );
-  };
 
   // Supprimer les doublons et exclure les ingrédients déjà sélectionnés
   const uniqueIngredients = deleteDuplicates(
@@ -154,7 +89,13 @@ const Filter = ({
             <div className={styles.filterDropdown}>
               <button
                 className={styles.filterToggle}
-                onClick={() => toggleMenu("food")}
+                onClick={() =>
+                  toggleMenu(
+                    "food",
+                    setisIngredientFilterOpen,
+                    isIngredientFilterOpen
+                  )
+                }
               >
                 Ingredients
               </button>
@@ -189,7 +130,15 @@ const Filter = ({
                       <button
                         key={food}
                         className={styles.optionButton}
-                        onClick={(event) => handleSelect(event, "food")}
+                        onClick={(event) =>
+                          handleSelect(
+                            event,
+                            "food",
+                            selectedIngredients,
+                            setSelectedIngredients,
+                            setisIngredientFilterOpen
+                          )
+                        }
                       >
                         {food}
                       </button>
@@ -201,7 +150,13 @@ const Filter = ({
             <div className={styles.filterDropdown}>
               <button
                 className={styles.filterToggle}
-                onClick={() => toggleMenu("appliance")}
+                onClick={() =>
+                  toggleMenu(
+                    "appliance",
+                    setisApplianceFilterOpen,
+                    isApplianceFilterOpen
+                  )
+                }
               >
                 Appareils
               </button>
@@ -236,7 +191,15 @@ const Filter = ({
                       <button
                         key={food}
                         className={styles.optionButton}
-                        onClick={(event) => handleSelect(event, "appliance")}
+                        onClick={(event) =>
+                          handleSelect(
+                            event,
+                            "appliance",
+                            selectedAppliances,
+                            setSelectedAppliances,
+                            setisApplianceFilterOpen
+                          )
+                        }
                       >
                         {food}
                       </button>
@@ -248,7 +211,13 @@ const Filter = ({
             <div className={styles.filterDropdown}>
               <button
                 className={styles.filterToggle}
-                onClick={() => toggleMenu("ustensils")}
+                onClick={() =>
+                  toggleMenu(
+                    "ustensils",
+                    setisUstensilsFilterOpen,
+                    isUstensilsFilterOpen
+                  )
+                }
               >
                 Ustensils
               </button>
@@ -283,7 +252,15 @@ const Filter = ({
                       <button
                         key={food}
                         className={styles.optionButton}
-                        onClick={(event) => handleSelect(event, "ustensils")}
+                        onClick={(event) =>
+                          handleSelect(
+                            event,
+                            "ustensils",
+                            selectedUstensils,
+                            setSelectedUstensils,
+                            setisUstensilsFilterOpen
+                          )
+                        }
                       >
                         {food}
                       </button>
@@ -304,9 +281,17 @@ const Filter = ({
               {ingredient}
               <button
                 className={styles.removeTagButton}
-                onClick={() => removeTag(ingredient, "food")}
+                onClick={() =>
+                  removeTag(
+                    ingredient,
+                    "food",
+                    selectedIngredients,
+                    setSelectedIngredients
+                  )
+                }
                 aria-label={`Supprimer ${ingredient}`}
               >
+                {" "}
                 X
               </button>
             </div>
@@ -316,7 +301,14 @@ const Filter = ({
               {appliance}
               <button
                 className={styles.removeTagButton}
-                onClick={() => removeTag(appliance, "appliance")}
+                onClick={() =>
+                  removeTag(
+                    appliance,
+                    "appliance",
+                    selectedAppliances,
+                    setSelectedAppliances
+                  )
+                }
                 aria-label={`Supprimer ${appliance}`}
               >
                 X
@@ -328,7 +320,14 @@ const Filter = ({
               {ustensil}
               <button
                 className={styles.removeTagButton}
-                onClick={() => removeTag(ustensil, "ustensils")}
+                onClick={() =>
+                  removeTag(
+                    ustensil,
+                    "ustensils",
+                    selectedUstensils,
+                    setSelectedUstensils
+                  )
+                }
                 aria-label={`Supprimer ${ustensil}`}
               >
                 X
