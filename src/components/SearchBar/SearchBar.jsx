@@ -2,19 +2,9 @@
 
 import styles from "./SearchBar.module.css";
 import SearchIconButton from "../SearchIconButton/SearchIconButton";
+import { handleChange, handleClear } from "./SearchBar_Utils";
 
 const SearchBar = ({ inputValue, setInputValue }) => {
-  // Fonction de gestion du changement dans l'input
-  const handleChange = (event) => {
-    let value = event.target.value;
-    setInputValue(value);
-  };
-
-  // Fonction pour effacer le texte de l'input
-  const handleClear = () => {
-    setInputValue("");
-  };
-
   return (
     <>
       <div className={styles.searchBar}>
@@ -27,12 +17,15 @@ const SearchBar = ({ inputValue, setInputValue }) => {
             placeholder="Rechercher une recette, un ingrédient..."
             aria-label="Search"
             value={inputValue} // Lier l'état à la valeur de l'input
-            onChange={handleChange} // Utiliser la fonction handleChange pour chaque changement de l'input
+            onChange={(event) => handleChange(event, setInputValue)} // Utiliser la fonction handleChange pour chaque changement de l'input
           />
           <div className={styles.clearIconContainer}>
             {/* Afficher la croix pour effacer le champ si du texte est entré */}
             {inputValue && (
-              <span className={styles.clearIcon} onClick={handleClear}>
+              <span
+                className={styles.clearIcon}
+                onClick={() => handleClear(setInputValue)}
+              >
                 &#x2715; {/* Croix */}
               </span>
             )}
