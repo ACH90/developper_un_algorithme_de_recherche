@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import style from "./Card.module.css";
-import { data } from "../../utils/dataLoader/dataLoader";
 import { filterAndMapRecipes } from "./../..//utils/filterAndMapRecipes/filterAndMapRecipes";
+import recipes from "../../data/recipes";
 
 // eslint-disable-next-line react/prop-types
 const Card = ({
@@ -12,7 +12,7 @@ const Card = ({
 }) => {
   // eslint-disable-next-line no-undef
   const filteredRecipes = filterAndMapRecipes(
-    data,
+    recipes,
     inputValue,
     selectedIngredients,
     selectedAppliances,
