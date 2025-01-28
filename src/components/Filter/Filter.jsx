@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import styles from "./Filter.module.css";
 import { filterAndMapRecipes } from "../../utils/filterAndMapRecipes/filterAndMapRecipes";
-import { data } from "../../utils/dataLoader/dataLoader";
 import {
   deleteDuplicates,
   toggleMenu,
@@ -12,6 +11,7 @@ import {
   handleChange,
   handleSelect,
 } from "./Filter_Utils";
+import recipes from "../../data/recipes";
 
 const Filter = ({
   inputValue,
@@ -32,7 +32,7 @@ const Filter = ({
   const [ustensilsSearchFilter, setUstensilsSearchFilter] = useState("");
 
   const filteredRecipes = filterAndMapRecipes(
-    data,
+    recipes,
     inputValue,
     selectedIngredients,
     selectedAppliances,
