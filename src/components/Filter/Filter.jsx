@@ -9,6 +9,7 @@ import {
   toggleMenu,
   clearSearch,
   removeTag,
+  handleChange,
   handleSelect,
 } from "./Filter_Utils";
 
@@ -48,10 +49,6 @@ const Filter = ({
   useEffect(() => {
     console.log("Options ustensils sélectionnées :", selectedUstensils);
   }, [selectedUstensils]);
-  const handleChange = (event, setSearchFilter) => {
-    const inputSearch = event.target.value;
-    setSearchFilter(inputSearch);
-  };
 
   // Extraire la liste des ingrédients en minuscule
   const ingredientsList = filteredRecipes.flatMap((recipe) =>

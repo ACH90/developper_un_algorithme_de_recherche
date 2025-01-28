@@ -10,6 +10,11 @@ export const toggleMenu = (dropdown, setIsOptionOpen, isOptionOpen) => {
   if (dropdown === "ustensils") setIsOptionOpen(!isOptionOpen);
 };
 
+export const handleChange = (event, setSearchFilter) => {
+  const inputSearch = event.target.value;
+  setSearchFilter(inputSearch);
+};
+
 export const handleSelect = (
   event,
   dropdown,
