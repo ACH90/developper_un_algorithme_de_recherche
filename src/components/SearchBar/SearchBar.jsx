@@ -1,19 +1,11 @@
 /* eslint-disable react/prop-types */
 
 import styles from "./SearchBar.module.css";
-import SearchIconButton from "../SearchIconButton/SearchIconButton";
+import { useState } from "react";
+import { handleChange, handleClear } from "./SearchBar_Utils";
 
 const SearchBar = ({ inputValue, setInputValue }) => {
-  // Fonction de gestion du changement dans l'input
-  const handleChange = (event) => {
-    let value = event.target.value;
-    setInputValue(value);
-  };
-
-  // Fonction pour effacer le texte de l'input
-  const handleClear = () => {
-    setInputValue([""]);
-  };
+  const [inputQuery, setInputQuery] = useState("");
 
   return (
     <>
@@ -26,25 +18,27 @@ const SearchBar = ({ inputValue, setInputValue }) => {
             className={styles.searchInput}
             placeholder="Rechercher une recette, un ingrédient..."
             aria-label="Search"
-            value={inputValue} // Lier l'état à la valeur de l'input
-            onChange={handleChange} // Utiliser la fonction handleChange pour chaque changement de l'input
+            value={inputQuery} // Lier l'état à la valeur de l'input
+            onChange={(event) =>
+              handleChange(event, setInputQuery, setInputValue)
+            } // Utiliser la fonction handleChange pour chaque changement de l'input
           />
           <div className={styles.clearIconContainer}>
             {/* Afficher la croix pour effacer le champ si du texte est entré */}
             {inputValue && (
-              <span className={styles.clearIcon} onClick={handleClear}>
+              <span
+                className={styles.clearIcon}
+                onClick={() => handleClear(setInputQuery, setInputValue)}
+              >
                 &#x2715; {/* Croix */}
               </span>
             )}
           </div>
 
           <div className={styles.searchIconButtonContainer}>
-            <SearchIconButton />
+            <button className={styles.searchIconButton}></button>
           </div>
         </div>
-      </div>
-      <div className="searchResults">
-        <div className="searchResult">données</div>
       </div>
     </>
   );
