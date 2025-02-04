@@ -57,14 +57,8 @@ export const handleSelect = (
   console.log("Options ustensils sélectionnées :", selectedDropdown);
 };
 
-export const clearSearch = (
-  setIngredientSearchFilter,
-  setApplianceSearchFilter,
-  setUstensilsSearchFilter
-) => {
-  setIngredientSearchFilter("");
-  setApplianceSearchFilter("");
-  setUstensilsSearchFilter("");
+export const clearSearch = (setOptionSearchFilter) => {
+  setOptionSearchFilter("");
 };
 
 export const removeTag2 = (tag, category, setInputSearchFilter) => {

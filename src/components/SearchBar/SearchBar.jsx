@@ -15,10 +15,14 @@ const SearchBar = ({ inputValue, setInputValue }) => {
             type="text"
             name="searchBar"
             id="searchBar"
+            required
+            minLength={3}
+            autoComplete="off"
             className={styles.searchInput}
             placeholder="Rechercher une recette, un ingrédient..."
             aria-label="Search"
             value={inputQuery} // Lier l'état à la valeur de l'input
+            pattern="[A-Za-z0-9 ]+"
             onChange={(event) =>
               handleChange(event, setInputQuery, setInputValue)
             } // Utiliser la fonction handleChange pour chaque changement de l'input

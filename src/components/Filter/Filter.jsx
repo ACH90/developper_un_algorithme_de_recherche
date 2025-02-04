@@ -102,6 +102,9 @@ const Filter = ({
                     <input
                       type="text"
                       className={styles.searchInput}
+                      required
+                      minLength={3}
+                      autoComplete="off"
                       aria-label="Rechercher un aliment"
                       placeholder="Rechercher un aliment..."
                       value={ingredientSearchFilter}
@@ -110,7 +113,10 @@ const Filter = ({
                       }
                     />
                     {ingredientSearchFilter && (
-                      <span className={styles.clearIcon} onClick={clearSearch}>
+                      <span
+                        className={styles.clearIcon}
+                        onClick={() => clearSearch(setIngredientSearchFilter)}
+                      >
                         &#x2715;
                       </span>
                     )}
@@ -163,6 +169,9 @@ const Filter = ({
                     <input
                       type="text"
                       className={styles.searchInput}
+                      required
+                      minLength={3}
+                      autoComplete="off"
                       aria-label="Rechercher un appareil"
                       placeholder="Rechercher un appareil..."
                       value={applianceSearchFilter}
@@ -171,7 +180,10 @@ const Filter = ({
                       }
                     />
                     {applianceSearchFilter && (
-                      <span className={styles.clearIcon} onClick={clearSearch}>
+                      <span
+                        className={styles.clearIcon}
+                        onClick={() => clearSearch(setApplianceSearchFilter)}
+                      >
                         &#x2715;
                       </span>
                     )}
@@ -224,6 +236,9 @@ const Filter = ({
                     <input
                       type="text"
                       className={styles.searchInput}
+                      required
+                      minLength={3}
+                      autoComplete="off"
                       aria-label="Rechercher un ustensil"
                       placeholder="Rechercher un ustensil..."
                       value={ustensilsSearchFilter}
@@ -232,7 +247,10 @@ const Filter = ({
                       }
                     />
                     {ustensilsSearchFilter && (
-                      <span className={styles.clearIcon} onClick={clearSearch}>
+                      <span
+                        className={styles.clearIcon}
+                        onClick={() => clearSearch(setUstensilsSearchFilter)}
+                      >
                         &#x2715;
                       </span>
                     )}
