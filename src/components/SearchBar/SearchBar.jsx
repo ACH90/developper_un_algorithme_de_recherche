@@ -15,6 +15,9 @@ const SearchBar = ({ inputValue, setInputValue }) => {
             type="text"
             name="searchBar"
             id="searchBar"
+            required
+            minLength={3}
+            autoComplete="off"
             className={styles.searchInput}
             placeholder="Rechercher une recette, un ingrédient..."
             aria-label="Search"
